@@ -1,0 +1,21 @@
+:root {
+  --content-width: 71.25rem;
+  --header-height: 4.6875rem;
+}
+
+.welcome-image {
+  margin: var(--s2) auto;
+}
+
+.content-container {
+  min-height: calc(95vh - var(--header-height));
+  padding: 0 var(--s0);
+}
+
+@media screen and (min-width: 768px) {
+  .content-container {
+    max-width: var(--content-width);
+    margin: var(--s2) auto;
+    padding: 0;
+  }
+}
