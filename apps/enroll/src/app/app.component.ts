@@ -6,8 +6,13 @@ import { NxWelcomeComponent } from './nx-welcome.component';
   standalone: true,
   imports: [NxWelcomeComponent, RouterModule],
   selector: 'enroll-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  template: `
+    <h1>Welcome {{ title }}</h1>
+
+    <div class="content-container">
+      <router-outlet></router-outlet>
+    </div>
+  `,
 })
 export class AppComponent {
   title = 'enroll';
