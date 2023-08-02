@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
+  selector: 'base-root',
   standalone: true,
-  imports: [NxWelcomeComponent],
-  selector: 'enroll-root',
-  template: `<enroll-nx-welcome></enroll-nx-welcome> `,
-  styles: [''],
+  imports: [RouterModule],
+  encapsulation: ViewEncapsulation.None,
+  template: ` <router-outlet /> `,
 })
 export class AppComponent {
   title = 'base';

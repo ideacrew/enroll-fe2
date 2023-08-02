@@ -2,7 +2,7 @@
   "name": "base",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "enroll",
+  "prefix": "base",
   "sourceRoot": "apps/base/src",
   "tags": [],
   "targets": {
@@ -89,6 +89,26 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "base:build"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["tsc -p tsconfig.app.json --noEmit"],
+        "cwd": "apps/base",
+        "forwardAllArgs": false
+      }
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "configurations": {
+        "fix": {
+          "fix": true
+        }
+      },
+      "options": {
+        "lintFilePatterns": ["**/*.css", "**/*.scss"]
       }
     }
   }
