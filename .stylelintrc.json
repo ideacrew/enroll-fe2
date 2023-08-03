@@ -9,6 +9,11 @@
         "stylelint-config-sass-guidelines"
       ],
       "rules": {}
+    },
+    {
+      "files": ["**/*.scss"],
+      "extends": ["stylelint-config-standard-scss"],
+      "rules": {}
     }
   ],
   "rules": {}
