@@ -98,18 +98,6 @@
         "cwd": "apps/base",
         "forwardAllArgs": false
       }
-    },
-    "stylelint": {
-      "executor": "nx-stylelint:lint",
-      "outputs": ["{options.outputFile}"],
-      "configurations": {
-        "fix": {
-          "fix": true
-        }
-      },
-      "options": {
-        "lintFilePatterns": ["**/*.css", "**/*.scss"]
-      }
     }
   }
 }

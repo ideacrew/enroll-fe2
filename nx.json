@@ -7,7 +7,7 @@
     "default": {
       "runner": "nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e", "stylelint"],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "MDlkYjRmNzQtMjc0Zi00OWUxLTg1MjYtZGRlYjhmZmVlNDZkfHJlYWQtd3JpdGU="
       }
     }
@@ -40,8 +40,7 @@
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/test-setup.[jt]s",
-      "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/.stylelintrc(.(json|yml|yaml|js))?"
+      "!{projectRoot}/.eslintrc.json"
     ],
     "sharedGlobals": []
   },

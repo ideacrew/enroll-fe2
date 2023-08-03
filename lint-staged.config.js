@@ -8,9 +8,4 @@ module.exports = {
     (files) => `nx affected:lint --files=${files.join(',')}`,
     (files) => `nx format:write --files=${files.join(',')}`,
   ],
-
-  '{apps,libs,tools}/**/*.{css,scss}': [
-    (files) =>
-      `nx affected --target=stylelint --fix --files=${files.join(',')}`,
-  ],
 };
