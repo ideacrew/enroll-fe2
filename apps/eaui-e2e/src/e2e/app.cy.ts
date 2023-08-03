@@ -1,9 +1,9 @@
 import { getAppName, getCompany } from '../support/app.po';
 
-describe('base', () => {
+describe('eaui', () => {
   beforeEach(() => cy.visit('/'));
 
-  it('should display welcome message', () => {
+  it('should display landing page with IDC name and App name', () => {
     // Custom command example, see `../support/commands.ts` file
     cy.login('my-email@something.com', 'myPassword');
 
