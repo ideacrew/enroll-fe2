@@ -9,6 +9,6 @@ describe('base', () => {
 
     // Function helper example, see `../support/app.po.ts` file
     getCompany().contains('IdeaCrew, Inc.');
-    getAppName().contains('Base App');
+    getAppName().contains('EAUI App');
   });
 });
