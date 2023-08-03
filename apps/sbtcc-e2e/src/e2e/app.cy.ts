@@ -1,6 +1,6 @@
 import { getAppName, getCompany } from '../support/app.po';
 
-describe('base', () => {
+describe('sbtcc', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display landing page with IDC name and App name', () => {
@@ -9,6 +9,6 @@ describe('base', () => {
 
     // Function helper example, see `../support/app.po.ts` file
     getCompany().contains('IdeaCrew, Inc.');
-    getAppName().contains('Base App');
+    getAppName().contains('sbtcc App');
   });
 });
