@@ -1,10 +1,13 @@
 module.exports = {
-  '{apps,libs,tools}/**/*.{ts,tsx}': [
+  '{apps,libs,tools}/**/*.ts': [
     (files) => `nx affected --target=typecheck --files=${files.join(',')}`,
+  ],
+
+  '{apps,libs,tools}/**/*.spec.ts': [
     (files) => `nx affected:test --files=${files.join(',')}`,
   ],
 
-  '{apps,libs,tools}/**/*.{js,ts,jsx,tsx,json}': [
+  '{apps,libs,tools}/**/*.{js,ts,json}': [
     (files) => `nx affected:lint --files=${files.join(',')}`,
     (files) => `nx format:write --files=${files.join(',')}`,
   ],
