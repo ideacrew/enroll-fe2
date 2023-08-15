@@ -109,6 +109,53 @@
       "options": {
         "lintFilePatterns": ["apps/sbtcc/**/*.css", "apps/sbtcc/**/*.scss"]
       }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "apps/sbtcc/.storybook",
+        "browserTarget": "sbtcc:build",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/sbtcc",
+        "configDir": "apps/sbtcc/.storybook",
+        "browserTarget": "sbtcc:build",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c apps/sbtcc/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "sbtcc:build-storybook",
+        "staticFilePath": "dist/storybook/sbtcc"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "sbtcc:build-storybook:ci"
+        }
+      }
     }
   }
 }
