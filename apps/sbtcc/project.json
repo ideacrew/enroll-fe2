@@ -15,7 +15,15 @@
         "main": "apps/sbtcc/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/sbtcc/tsconfig.app.json",
-        "assets": ["apps/sbtcc/src/favicon.ico", "apps/sbtcc/src/assets"],
+        "assets": [
+          "apps/sbtcc/src/favicon.ico",
+          "apps/sbtcc/src/assets",
+          {
+            "input": "libs/sbtcc/header/src/lib/assets",
+            "glob": "**/*",
+            "output": "/"
+          }
+        ],
         "styles": ["apps/sbtcc/src/styles.scss"],
         "scripts": []
       },

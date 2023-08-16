@@ -24,7 +24,9 @@ describe('MainLayoutComponent', () => {
     const fixture = TestBed.createComponent(MainLayoutComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h2')?.textContent).toContain('sbtcc App');
+    expect(compiled.querySelector('h2')?.textContent).toContain(
+      'Small Business Tax Credit Calculator',
+    );
   });
 
   it(`should have as title 'sbtcc App'`, () => {
