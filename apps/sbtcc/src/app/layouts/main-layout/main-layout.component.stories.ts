@@ -12,13 +12,12 @@ export default meta;
 type Story = StoryObj<MainLayoutComponent>;
 
 export const Primary: Story = {
-  args: {},
-};
-
-export const Heading: Story = {
+  name: 'Default',
   args: {},
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/IdeaCrew, Inc./gi)).toBeTruthy();
+    expect(
+      canvas.getByText(/Small Business Tax Credit Calculator/gi),
+    ).toBeTruthy();
   },
 };
