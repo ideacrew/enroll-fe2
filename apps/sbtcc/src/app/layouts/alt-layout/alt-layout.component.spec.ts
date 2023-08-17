@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SbtccFooterComponent } from './sbtcc-footer.component';
+import { AltLayoutComponent } from './alt-layout.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('SbtccFooterComponent', () => {
-  let component: SbtccFooterComponent;
-  let fixture: ComponentFixture<SbtccFooterComponent>;
+describe('AltLayoutComponent', () => {
+  let component: AltLayoutComponent;
+  let fixture: ComponentFixture<AltLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SbtccFooterComponent, RouterTestingModule],
+      imports: [AltLayoutComponent, RouterTestingModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SbtccFooterComponent);
+    fixture = TestBed.createComponent(AltLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
