@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'sbtcc-header',
   standalone: true,
+  imports: [RouterModule],
   template: `
     <div>
-      <img src="covermelogo.svg" alt="Cover Me Logo" />
+      <a routerLink="/">
+        <img src="covermelogo.svg" alt="Cover Me Logo" />
+      </a>
+
       <span class="span"></span>
+
       <h2>Small Business Tax Credit Calculator</h2>
     </div>
   `,
@@ -51,9 +57,13 @@ import { Component } from '@angular/core';
         }
       }
 
+      a {
+        display: block;
+        translate: 0 8px;
+      }
+
       img {
         height: 41px;
-        translate: 0 4px;
       }
 
       h2 {

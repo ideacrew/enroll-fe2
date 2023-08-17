@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'sbtcc-footer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   template: `
     <div class="container">
       <div class="top">
@@ -32,7 +33,7 @@ import { CommonModule } from '@angular/common';
         <span></span>
         <a href="/">(888) 555-5555 / TTY: 111</a>
         <a href="/">info@coverme.gov</a>
-        <a href="/">FAQs</a>
+        <a routerLink="/faq">FAQs</a>
       </div>
     </div>
   `,
