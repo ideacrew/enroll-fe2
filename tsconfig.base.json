@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@enroll/sbtcc/footer": ["libs/sbtcc/footer/src/index.ts"],
-      "@enroll/sbtcc/header": ["libs/sbtcc/header/src/index.ts"]
+      "@enroll/sbtcc/header": ["libs/sbtcc/header/src/index.ts"],
+      "@enroll/sbtcc/sidenav": ["libs/sbtcc/sidenav/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
