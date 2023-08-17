@@ -1,4 +1,4 @@
-import { getAppName, getCompany } from '../support/app.po';
+import { getHeading } from '../support/app.po';
 
 describe('sbtcc', () => {
   beforeEach(() => cy.visit('/'));
@@ -8,7 +8,6 @@ describe('sbtcc', () => {
     cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getCompany().contains('IdeaCrew, Inc.');
-    getAppName().contains('sbtcc App');
+    getHeading().contains('Small Business Tax Credit Calculator');
   });
 });
