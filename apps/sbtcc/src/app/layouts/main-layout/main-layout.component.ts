@@ -17,7 +17,9 @@ import { SbtccFooterComponent } from '@enroll/sbtcc/footer';
     <div class="wrapper">
       <sbtcc-header />
 
-      <router-outlet />
+      <div class="content">
+        <router-outlet />
+      </div>
 
       <sbtcc-footer />
     </div>
@@ -26,6 +28,13 @@ import { SbtccFooterComponent } from '@enroll/sbtcc/footer';
     `
       :host {
         display: block;
+        height: 100dvh;
+      }
+
+      .wrapper {
+        display: grid;
+        grid-template-rows: max-content 1fr max-content;
+        height: 100%;
       }
     `,
   ],
