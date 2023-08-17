@@ -43,12 +43,13 @@ import { SbtccSidenavComponent } from '@enroll/sbtcc/sidenav';
         display: grid;
         grid-template-rows: max-content 1fr max-content;
         height: 100%;
+        background: #fafafa;
       }
 
       .content {
         display: grid;
         place-items: center;
-        background: #fafafa;
+        margin: 48px 0;
       }
 
       .inner-content {
