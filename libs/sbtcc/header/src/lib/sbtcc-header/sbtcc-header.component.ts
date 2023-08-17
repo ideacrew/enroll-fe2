@@ -18,6 +18,7 @@ import { Component } from '@angular/core';
         box-sizing: border-box;
         background-color: #3d5d6f;
         color: #fff;
+        -webkit-font-smoothing: antialiased;
       }
 
       div {
