@@ -9,5 +9,5 @@ import { RouterModule } from '@angular/router';
   template: ` <router-outlet /> `,
 })
 export class AppComponent {
-  title = 'sbtcc';
+  title = 'Small Business Tax Credit Calculator';
 }
