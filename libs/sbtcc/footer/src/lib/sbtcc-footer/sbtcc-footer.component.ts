@@ -31,8 +31,11 @@ import { RouterModule } from '@angular/router';
       <div class="bottom">
         <span>CoverME.gov - All Rights Reserved.</span>
         <span></span>
-        <a href="/">(888) 555-5555 / TTY: 111</a>
-        <a href="/">info@coverme.gov</a>
+        <a href="tel:888-555-5555">(888) 555-5555 / TTY: 111</a>
+        <a
+          href="mailto:info@coverme.gov?subject=Contact from Tax Credit Calculator Website"
+          >info@coverme.gov</a
+        >
         <a routerLink="/faq">FAQs</a>
       </div>
     </div>
