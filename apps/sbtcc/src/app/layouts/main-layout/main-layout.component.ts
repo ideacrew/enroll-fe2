@@ -15,6 +15,7 @@ import { SbtccSidenavComponent } from '@enroll/sbtcc/sidenav';
     SbtccFooterComponent,
     SbtccSidenavComponent,
   ],
+  styleUrls: ['./main-layout.component.scss'],
   template: `
     <div class="wrapper">
       <sbtcc-header />
@@ -24,6 +25,7 @@ import { SbtccSidenavComponent } from '@enroll/sbtcc/sidenav';
           <sbtcc-sidenav />
 
           <main>
+            <h1>Small Business Tax Credit Calculator</h1>
             <router-outlet />
           </main>
         </div>
@@ -32,35 +34,6 @@ import { SbtccSidenavComponent } from '@enroll/sbtcc/sidenav';
       <sbtcc-footer />
     </div>
   `,
-  styles: [
-    `
-      :host {
-        display: block;
-        height: 100dvh;
-      }
-
-      .wrapper {
-        display: grid;
-        grid-template-rows: max-content 1fr max-content;
-        height: 100%;
-        background: #fafafa;
-      }
-
-      .content {
-        display: grid;
-        place-items: center;
-        margin: 48px 0;
-      }
-
-      .inner-content {
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        max-width: 1172px;
-        width: 100%;
-        padding: 0 16px;
-      }
-    `,
-  ],
 })
 export class MainLayoutComponent {
   title = 'sbtcc App';
