@@ -10,8 +10,8 @@ import { CommonModule } from '@angular/common';
       <div class="main">
         <h3>Progress</h3>
 
-        <span data-active>Start</span>
-        <span>Tax-exemption</span>
+        <span data-complete>Start</span>
+        <span data-current>Tax-exemption</span>
         <span>Full-time Employees</span>
         <span>Employee Wages</span>
         <span>Premiums</span>
@@ -101,7 +101,12 @@ import { CommonModule } from '@angular/common';
         background: #8b9ea9;
       }
 
-      .main span[data-active]::after {
+      .main span[data-complete]::after {
+        color: #253843;
+        background: #253843;
+      }
+
+      .main span[data-current]::after {
         color: #253843;
       }
 
