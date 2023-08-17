@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@enroll/sbtcc/footer": ["libs/sbtcc/footer/src/index.ts"],
       "@enroll/sbtcc/header": ["libs/sbtcc/header/src/index.ts"]
     }
   },
