@@ -2,6 +2,39 @@
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
 
+$custom-palette: (
+  50: #e8ecee,
+  100: #c5ced4,
+  200: #9eaeb7,
+  300: #778e9a,
+  400: #5a7585,
+  500: #3d5d6f,
+  600: #375567,
+  700: #2f4b5c,
+  800: #274152,
+  900: #1a3040,
+  A100: #81c7ff,
+  A200: #4eb1ff,
+  A400: #1b9aff,
+  A700: #028fff,
+  contrast: (
+    50: rgb(0 0 0 / 87%),
+    100: rgb(0 0 0 / 87%),
+    200: rgb(0 0 0 / 87%),
+    300: rgb(0 0 0 / 87%),
+    400: #fff,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff,
+    A100: rgb(0 0 0 / 87%),
+    A200: rgb(0 0 0 / 87%),
+    A400: #fff,
+    A700: #fff,
+  ),
+);
+
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -12,7 +45,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$sbtc-calculator-primary: mat.define-palette(mat.$indigo-palette);
+$sbtc-calculator-primary: mat.define-palette($custom-palette);
 $sbtc-calculator-accent: mat.define-palette(
   mat.$pink-palette,
   A200,
@@ -56,6 +89,7 @@ html {
   line-height: 1.5;
   tab-size: 4;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {

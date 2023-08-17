@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
-import { HomeComponent } from './views/home/home.component';
+import { StartComponent } from './views/start/start.component';
 import { PageTwoComponent } from './views/page-two/page-two.component';
 import { PageThreeComponent } from './views/page-three/page-three.component';
 import { AltLayoutComponent } from './layouts/alt-layout/alt-layout.component';
@@ -13,7 +13,7 @@ export const appRoutes: Route[] = [
     children: [
       {
         path: '',
-        component: HomeComponent,
+        component: StartComponent,
       },
       {
         path: 'page2',
