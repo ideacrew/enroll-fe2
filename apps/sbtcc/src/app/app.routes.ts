@@ -5,6 +5,7 @@ import { TaxExemptionComponent } from './views/tax-exemption/tax-exemption.compo
 import { EmployeesComponent } from './views/employees/employees.component';
 import { AltLayoutComponent } from './layouts/alt-layout/alt-layout.component';
 import { FaqComponent } from './views/faq/faq.component';
+import { WagesComponent } from './views/wages/wages.component';
 
 export const appRoutes: Route[] = [
   {
@@ -22,6 +23,10 @@ export const appRoutes: Route[] = [
       {
         path: 'employees',
         component: EmployeesComponent,
+      },
+      {
+        path: 'wages',
+        component: WagesComponent,
       },
     ],
   },
