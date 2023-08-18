@@ -2,7 +2,7 @@ import { Route } from '@angular/router';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { StartComponent } from './views/start/start.component';
 import { TaxExemptionComponent } from './views/tax-exemption/tax-exemption.component';
-import { PageThreeComponent } from './views/page-three/page-three.component';
+import { EmployeesComponent } from './views/employees/employees.component';
 import { AltLayoutComponent } from './layouts/alt-layout/alt-layout.component';
 import { FaqComponent } from './views/faq/faq.component';
 
@@ -20,8 +20,8 @@ export const appRoutes: Route[] = [
         component: TaxExemptionComponent,
       },
       {
-        path: 'page3',
-        component: PageThreeComponent,
+        path: 'employees',
+        component: EmployeesComponent,
       },
     ],
   },

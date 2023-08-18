@@ -39,8 +39,7 @@ export class TaxExemptionComponent {
   constructor(private router: Router) {}
 
   nextStep(): void {
-    // this.router.navigate(['/tax-exemption']);
-    console.log('Clicked Next Step');
+    this.router.navigate(['/employees']);
   }
 
   previousStep(): void {

@@ -1,0 +1,60 @@
+:host {
+  color: var(--enroll-text-primary, #323130);
+  font-family: Barlow, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h2 {
+  color: var(--enroll-text-primary, #323130);
+  font-family: Barlow, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px;
+  margin-bottom: 12px;
+}
+
+p {
+  margin-bottom: 12px;
+}
+
+button {
+  margin: 4px;
+  color: var(--greys-white, #fff);
+  font-family: Barlow, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  border: 2px solid var(--primary-100-me, #3d5d6f);
+
+  &[color='basic'] {
+    color: var(--primary-100-me, #3d5d6f);
+  }
+}
+
+.form-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-area > * {
+  width: 100%;
+  max-width: 279px;
+}
+
+.form-area form {
+  margin-bottom: 20px;
+}
+
+.form-area form > * {
+  margin: 5px 0;
+}
+
+.form-area mat-label {
+  color: var(--text-secondary, #605e5c);
+  font-weight: 600;
+}
