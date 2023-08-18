@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sbtcc-sidenav',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   template: `
     <div>
       <div class="main">
@@ -19,7 +20,7 @@ import { CommonModule } from '@angular/common';
       </div>
 
       <div class="alt">
-        <a href="/">Start Over</a>
+        <a routerLink="/">Start Over</a>
         <a href="/">Return Home</a>
       </div>
     </div>

@@ -16,5 +16,7 @@
       "rules": {}
     }
   ],
-  "rules": {}
+  "rules": {
+    "selector-no-qualifying-type": null
+  }
 }
