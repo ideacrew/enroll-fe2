@@ -8,8 +8,30 @@
   -webkit-font-smoothing: antialiased;
 }
 
+h2 {
+  color: var(--enroll-text-primary, #323130);
+  font-family: Barlow, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px;
+  margin-bottom: 12px;
+}
+
 p {
+  margin-bottom: 8px;
+}
+
+.questions {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 24px;
+  align-items: flex-start;
+  color: var(--text-primary, #323130);
+
+  .radio {
+    translate: -10px;
+  }
 }
 
 button {
@@ -20,4 +42,8 @@ button {
   font-weight: 600;
   line-height: 20px;
   border: 2px solid var(--primary-100-me, #3d5d6f);
+
+  &[color='basic'] {
+    color: var(--primary-100-me, #3d5d6f);
+  }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -14,8 +15,16 @@ import { MatButtonModule } from '@angular/material/button';
       consult your tax adviser for further assistance.
     </p>
 
-    <button mat-raised-button color="primary">Begin the Calculator</button>
+    <button (click)="nextStep()" mat-raised-button color="primary">
+      Begin the Calculator
+    </button>
   `,
   styleUrls: ['start.component.scss'],
 })
-export class StartComponent {}
+export class StartComponent {
+  constructor(private router: Router) {}
+
+  nextStep(): void {
+    this.router.navigate(['/tax-exemption']);
+  }
+}

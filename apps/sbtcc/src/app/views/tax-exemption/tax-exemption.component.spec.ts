@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { PageTwoComponent } from './page-two.component';
+import { TaxExemptionComponent } from './tax-exemption.component';
 
-describe('PageTwoComponent', () => {
-  let component: PageTwoComponent;
-  let fixture: ComponentFixture<PageTwoComponent>;
+describe('TaxExemptionComponent', () => {
+  let component: TaxExemptionComponent;
+  let fixture: ComponentFixture<TaxExemptionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PageTwoComponent],
+      imports: [TaxExemptionComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PageTwoComponent);
+    fixture = TestBed.createComponent(TaxExemptionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

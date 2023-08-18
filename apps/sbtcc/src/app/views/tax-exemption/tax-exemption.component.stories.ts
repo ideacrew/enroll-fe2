@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { PageTwoComponent } from './page-two.component';
+import { TaxExemptionComponent } from './tax-exemption.component';
 
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
-const meta: Meta<PageTwoComponent> = {
-  component: PageTwoComponent,
+const meta: Meta<TaxExemptionComponent> = {
+  component: TaxExemptionComponent,
   title: 'PageTwoComponent',
 };
 export default meta;
-type Story = StoryObj<PageTwoComponent>;
+type Story = StoryObj<TaxExemptionComponent>;
 
 export const Primary: Story = {
   args: {},

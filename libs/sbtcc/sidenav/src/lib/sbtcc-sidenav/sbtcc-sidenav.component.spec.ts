@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SbtccSidenavComponent } from './sbtcc-sidenav.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SbtccSidenavComponent', () => {
   let component: SbtccSidenavComponent;
@@ -7,7 +8,7 @@ describe('SbtccSidenavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SbtccSidenavComponent],
+      imports: [SbtccSidenavComponent, RouterTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SbtccSidenavComponent);
