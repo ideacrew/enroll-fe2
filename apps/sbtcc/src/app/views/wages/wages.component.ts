@@ -7,26 +7,30 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'sbtcc-employees',
+  selector: 'sbtcc-wages',
   standalone: true,
   imports: [
     CommonModule,
-    MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
+    MatButtonModule,
   ],
   template: `
-    <h2>2. How many of your employees work 40 hours or more a week?</h2>
+    <h2>
+      3. What are your total estimated employee wages for the applicable tax
+      year?
+    </h2>
 
     <p>
-      Full-time employees are employees who worked or who you expect to work the
-      equivalent of 40 hours a week for 52 weeks (for a total of 2,080 hours
-      each).
+      The total wages you paid or expect to pay for both full-time and part-time
+      employees should include all wages subject to Social Security and Medicare
+      tax withholding (even if an employee's yearly wages are more than the wage
+      base limit).
     </p>
 
     <form class="form-area">
-      <mat-label>Number of full-time employees</mat-label>
+      <mat-label>Total wages in $USD</mat-label>
       <mat-form-field appearance="outline" floatLabel="always">
         <input matInput />
       </mat-form-field>
@@ -39,16 +43,16 @@ import { MatButtonModule } from '@angular/material/button';
       Continue to Next Step
     </button>
   `,
-  styleUrls: ['employees.component.scss'],
+  styleUrls: ['./wages.component.scss'],
 })
-export class EmployeesComponent {
+export class WagesComponent {
   constructor(private router: Router) {}
 
-  nextStep(): void {
-    this.router.navigate(['/wages']);
+  previousStep() {
+    this.router.navigate(['/employees']);
   }
 
-  previousStep(): void {
-    this.router.navigate(['/tax-exemption']);
+  nextStep() {
+    this.router.navigate(['/premiums']);
   }
 }
