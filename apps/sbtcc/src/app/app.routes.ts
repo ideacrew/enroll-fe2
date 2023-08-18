@@ -6,6 +6,7 @@ import { EmployeesComponent } from './views/employees/employees.component';
 import { AltLayoutComponent } from './layouts/alt-layout/alt-layout.component';
 import { FaqComponent } from './views/faq/faq.component';
 import { WagesComponent } from './views/wages/wages.component';
+import { PremiumsComponent } from './views/premiums/premiums.component';
 
 export const appRoutes: Route[] = [
   {
@@ -27,6 +28,10 @@ export const appRoutes: Route[] = [
       {
         path: 'wages',
         component: WagesComponent,
+      },
+      {
+        path: 'premiums',
+        component: PremiumsComponent,
       },
     ],
   },
