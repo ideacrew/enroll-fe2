@@ -7,9 +7,7 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule],
   template: `
     <div>
-      <a routerLink="/">
-        <img src="covermelogo.svg" alt="Cover Me Logo" />
-      </a>
+      <img src="covermelogo.svg" alt="Cover Me Logo" />
 
       <span class="span"></span>
 
@@ -57,13 +55,9 @@ import { RouterModule } from '@angular/router';
         }
       }
 
-      a {
-        display: block;
-        translate: 0 8px;
-      }
-
       img {
         height: 41px;
+        translate: 0 4px;
       }
 
       h2 {
