@@ -8,6 +8,8 @@ export const DATA_FEATURE_KEY = 'data';
 
 export interface DataState extends EntityState<DataEntity> {
   selectedId?: string | number; // which Data record has been selected
+  employeeCount: number;
+  results: number;
   loaded: boolean; // has the Data list been loaded
   error?: string | null; // last known error (if any)
 }
@@ -21,6 +23,8 @@ export const dataAdapter: EntityAdapter<DataEntity> =
 
 export const initialDataState: DataState = dataAdapter.getInitialState({
   // set initial required properties
+  employeeCount: 0,
+  results: 999,
   loaded: false,
 });
 
