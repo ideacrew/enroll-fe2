@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   template: `
     <div>
       <div class="main">
-        <h3>Progress</h3>
+        <h3>Progress {{ currentLocation }}</h3>
 
         <span data-complete>Start</span>
         <span data-current>Tax-exemption</span>
@@ -118,4 +118,6 @@ import { CommonModule } from '@angular/common';
     `,
   ],
 })
-export class SbtccSidenavComponent {}
+export class SbtccSidenavComponent {
+  @Input() currentLocation: number | string = 0;
+}

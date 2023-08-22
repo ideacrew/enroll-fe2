@@ -13,6 +13,11 @@ export const loadDataFailure = createAction(
   props<{ error: any }>(),
 );
 
+export const location = createAction(
+  '[Data Page] Update Location',
+  props<{ location: number | string }>(),
+);
+
 export const taxExempt = createAction(
   '[Data Page] Tax Exempt',
   props<{ taxExempt: boolean }>(),

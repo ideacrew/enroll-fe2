@@ -7,7 +7,8 @@ import { DataEntity } from './data.models';
 export const DATA_FEATURE_KEY = 'data';
 
 export interface DataState extends EntityState<DataEntity> {
-  selectedId?: string | number; // which Data record has been selected
+  // selectedId?: string | number; // which Data record has been selected
+  location: string | number;
   taxExempt: boolean | string;
   employeeCount: number;
   wages: number;
@@ -26,8 +27,9 @@ export const dataAdapter: EntityAdapter<DataEntity> =
 
 export const initialDataState: DataState = dataAdapter.getInitialState({
   // set initial required properties
+  location: '0',
   taxExempt: 'false',
-  employeeCount: 0,
+  employeeCount: 7,
   wages: 0,
   premiums: 0,
   results: 0,
@@ -38,6 +40,7 @@ const reducer = createReducer(
   initialDataState,
   on(DataActions.initData, (state) => ({
     ...state,
+    location: 0,
     loaded: false,
     error: null,
   })),
@@ -45,20 +48,27 @@ const reducer = createReducer(
     dataAdapter.setAll(data, { ...state, loaded: true }),
   ),
   on(DataActions.loadDataFailure, (state, { error }) => ({ ...state, error })),
+  on(DataActions.location, (state, { location }) => ({
+    ...state,
+    location,
+  })),
   on(DataActions.taxExempt, (state, { taxExempt }) => ({
     ...state,
     taxExempt,
   })),
   on(DataActions.employeeCount, (state, { employeeCount }) => ({
     ...state,
+    location: 1,
     employeeCount,
   })),
   on(DataActions.wages, (state, { wages }) => ({
     ...state,
+    location: 2,
     wages,
   })),
   on(DataActions.premiums, (state, { premiums }) => ({
     ...state,
+    location: 3,
     premiums,
   })),
 );

@@ -7,11 +7,7 @@ import { MatRadioChange } from '@angular/material/radio';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { DataState } from '../../+state/data.reducer';
-import {
-  loadDataSuccess,
-  loadDataFailure,
-  taxExempt,
-} from '../../+state/data.actions';
+import * as DataAction from '../../+state/data.actions';
 
 @Component({
   selector: 'sbtcc-tax-exemption',
@@ -56,6 +52,7 @@ export class TaxExemptionComponent {
   ) {
     this.dataState$ = store.select('dataState');
     this.taxExempt$ = this.dataState$.pipe(map((state) => state.taxExempt));
+    this.store.dispatch(DataAction.location({ location: 0 }));
   }
 
   nextStep(): void {
@@ -63,6 +60,6 @@ export class TaxExemptionComponent {
   }
 
   taxExemptChanged(event: MatRadioChange): void {
-    this.store.dispatch(taxExempt({ taxExempt: event.value }));
+    this.store.dispatch(DataAction.taxExempt({ taxExempt: event.value }));
   }
 }
