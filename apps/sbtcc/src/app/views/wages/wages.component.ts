@@ -54,6 +54,7 @@ export class WagesComponent implements OnInit, OnDestroy {
   ) {
     this.dataState$ = store.select('dataState');
     this.wages$ = this.dataState$.pipe(map((state) => state.wages));
+    this.store.dispatch(DataAction.location({ location: 3 }));
   }
 
   ngOnInit(): void {

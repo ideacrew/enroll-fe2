@@ -52,6 +52,7 @@ export class EmployeesComponent implements OnInit, OnDestroy {
     this.employeeCount$ = this.dataState$.pipe(
       map((state) => state.employeeCount),
     );
+    this.store.dispatch(DataAction.location({ location: 2 }));
   }
 
   ngOnInit(): void {

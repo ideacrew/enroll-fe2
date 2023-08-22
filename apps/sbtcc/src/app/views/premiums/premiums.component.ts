@@ -54,6 +54,7 @@ export class PremiumsComponent implements OnInit, OnDestroy {
   ) {
     this.dataState$ = store.select('dataState');
     this.premiums$ = this.dataState$.pipe(map((state) => state.premiums));
+    this.store.dispatch(DataAction.location({ location: 4 }));
   }
 
   ngOnInit(): void {

@@ -44,10 +44,6 @@ const reducer = createReducer(
     loaded: false,
     error: null,
   })),
-  on(DataActions.loadDataSuccess, (state, { data }) =>
-    dataAdapter.setAll(data, { ...state, loaded: true }),
-  ),
-  on(DataActions.loadDataFailure, (state, { error }) => ({ ...state, error })),
   on(DataActions.reset, () => ({
     ...initialDataState,
   })),

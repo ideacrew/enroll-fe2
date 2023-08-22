@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { DataState } from '../../+state/data.reducer';
+import * as DataAction from '../../+state/data.actions';
 
 @Component({
   selector: 'sbtcc-results',
@@ -87,6 +88,8 @@ export class ResultsComponent {
     this.wages$ = this.dataState$.pipe(map((state) => state.wages));
     this.premiums$ = this.dataState$.pipe(map((state) => state.premiums));
     this.results$ = this.dataState$.pipe(map((state) => state.results));
+
+    this.store.dispatch(DataAction.location({ location: 5 }));
   }
 
   previousStep() {
