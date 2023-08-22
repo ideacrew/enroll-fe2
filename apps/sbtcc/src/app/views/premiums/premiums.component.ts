@@ -1,21 +1,17 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { DataState } from '../../+state/data.reducer';
+import * as DataAction from '../../+state/data.actions';
+import { Observable, Subscription, map } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'sbtcc-premiums',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatInputModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatButtonModule,
-  ],
+  imports: [MatButtonModule, MatInputModule, ReactiveFormsModule],
   template: `
     <h2>
       4. What is the total estimated amount you will pay toward premiums during
@@ -32,7 +28,7 @@ import { MatButtonModule } from '@angular/material/button';
     <form class="form-area">
       <mat-label>Total contribution in $USD</mat-label>
       <mat-form-field appearance="outline" floatLabel="always">
-        <input matInput />
+        <input matInput [formControl]="premiumsField" />
       </mat-form-field>
     </form>
 
@@ -45,14 +41,46 @@ import { MatButtonModule } from '@angular/material/button';
   `,
   styleUrls: ['./premiums.component.scss'],
 })
-export class PremiumsComponent {
-  constructor(private router: Router) {}
+export class PremiumsComponent implements OnInit, OnDestroy {
+  dataState$: Observable<DataState>;
+  premiums$: Observable<number | string>;
+
+  premiumsField = new FormControl('');
+  private premiumSubscription!: Subscription;
+
+  constructor(
+    private router: Router,
+    private store: Store<{ dataState: DataState }>,
+  ) {
+    this.dataState$ = store.select('dataState');
+    this.premiums$ = this.dataState$.pipe(map((state) => state.premiums));
+  }
+
+  ngOnInit(): void {
+    this.premiumSubscription = this.premiums$.subscribe((value) => {
+      this.premiumsField.setValue(value.toString());
+    });
+
+    // TODO: Fix this
+    // this.countField.valueChanges.subscribe((value) => console.log('changed'));
+  }
+
+  nextStep() {
+    this.updatePremiums(parseInt(this.premiumsField.value || '0', 10));
+    this.router.navigate(['/results']);
+  }
 
   previousStep() {
     this.router.navigate(['/wages']);
   }
 
-  nextStep() {
-    this.router.navigate(['/results']);
+  updatePremiums(value: number | string): void {
+    this.store.dispatch(
+      DataAction.premiums({ premiums: value as unknown as number }),
+    );
+  }
+
+  ngOnDestroy() {
+    this.premiumSubscription.unsubscribe();
   }
 }

@@ -27,3 +27,8 @@ export const wages = createAction(
   '[Data Page] Wages',
   props<{ wages: number }>(),
 );
+
+export const premiums = createAction(
+  '[Data Page] Premiums',
+  props<{ premiums: number }>(),
+);

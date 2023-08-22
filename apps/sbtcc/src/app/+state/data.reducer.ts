@@ -28,7 +28,7 @@ export const initialDataState: DataState = dataAdapter.getInitialState({
   // set initial required properties
   taxExempt: 'false',
   employeeCount: 0,
-  wages: 7,
+  wages: 0,
   premiums: 0,
   results: 0,
   loaded: false,
@@ -56,6 +56,10 @@ const reducer = createReducer(
   on(DataActions.wages, (state, { wages }) => ({
     ...state,
     wages,
+  })),
+  on(DataActions.premiums, (state, { premiums }) => ({
+    ...state,
+    premiums,
   })),
 );
 
