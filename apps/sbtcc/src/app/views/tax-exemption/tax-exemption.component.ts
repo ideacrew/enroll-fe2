@@ -27,9 +27,6 @@ import { MatRadioModule } from '@angular/material/radio';
       </mat-radio-button>
     </mat-radio-group>
 
-    <button mat-raised-button color="basic" (click)="previousStep()">
-      Previous Step
-    </button>
     <button mat-raised-button color="primary" (click)="nextStep()">
       Continue to Next Step
     </button>
@@ -40,9 +37,5 @@ export class TaxExemptionComponent {
 
   nextStep(): void {
     this.router.navigate(['/employees']);
-  }
-
-  previousStep(): void {
-    this.router.navigate(['/']);
   }
 }

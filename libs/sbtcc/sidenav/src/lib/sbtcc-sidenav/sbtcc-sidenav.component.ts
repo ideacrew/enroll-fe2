@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
       </div>
 
       <div class="alt">
-        <a routerLink="/">Start Over</a>
+        <a routerLink="/tax-exemption">Start Over</a>
         <a href="/">Return Home</a>
       </div>
     </div>

@@ -18,6 +18,26 @@ h2 {
   margin-bottom: 12px;
 }
 
+ol {
+  padding-left: 20px;
+  margin-bottom: 12px;
+
+  // margin: 0;
+
+  li:not(:last-child) {
+    margin-bottom: 6px;
+  }
+
+  strong {
+    display: block;
+    color: var(--text-secondary, #605e5c);
+  }
+
+  span {
+    display: block;
+  }
+}
+
 h3 {
   font-size: 18px;
   line-height: 27px;
