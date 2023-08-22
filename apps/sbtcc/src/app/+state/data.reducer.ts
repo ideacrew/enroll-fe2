@@ -27,9 +27,9 @@ export const dataAdapter: EntityAdapter<DataEntity> =
 
 export const initialDataState: DataState = dataAdapter.getInitialState({
   // set initial required properties
-  location: '0',
-  taxExempt: 'false',
-  employeeCount: 7,
+  location: 0,
+  taxExempt: false,
+  employeeCount: 0,
   wages: 0,
   premiums: 0,
   results: 0,
@@ -48,6 +48,9 @@ const reducer = createReducer(
     dataAdapter.setAll(data, { ...state, loaded: true }),
   ),
   on(DataActions.loadDataFailure, (state, { error }) => ({ ...state, error })),
+  on(DataActions.reset, () => ({
+    ...initialDataState,
+  })),
   on(DataActions.location, (state, { location }) => ({
     ...state,
     location,

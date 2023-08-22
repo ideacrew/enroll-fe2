@@ -13,6 +13,8 @@ export const loadDataFailure = createAction(
   props<{ error: any }>(),
 );
 
+export const reset = createAction('[Data Page] Reset Data');
+
 export const location = createAction(
   '[Data Page] Update Location',
   props<{ location: number | string }>(),

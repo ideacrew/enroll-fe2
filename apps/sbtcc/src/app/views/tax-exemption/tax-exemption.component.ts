@@ -53,6 +53,7 @@ export class TaxExemptionComponent {
     this.dataState$ = store.select('dataState');
     this.taxExempt$ = this.dataState$.pipe(map((state) => state.taxExempt));
     this.store.dispatch(DataAction.location({ location: 0 }));
+    // this.store.dispatch(DataAction.reset());
   }
 
   nextStep(): void {
