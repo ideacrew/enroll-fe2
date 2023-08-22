@@ -17,3 +17,8 @@ export const taxExempt = createAction(
   '[Data Page] Tax Exempt',
   props<{ taxExempt: boolean }>(),
 );
+
+export const employeeCount = createAction(
+  '[Data Page] Employee Count',
+  props<{ employeeCount: number }>(),
+);
