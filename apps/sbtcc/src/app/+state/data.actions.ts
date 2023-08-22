@@ -12,3 +12,8 @@ export const loadDataFailure = createAction(
   '[Data/API] Load Data Failure',
   props<{ error: any }>(),
 );
+
+export const taxExempt = createAction(
+  '[Data Page] Tax Exempt',
+  props<{ taxExempt: boolean }>(),
+);

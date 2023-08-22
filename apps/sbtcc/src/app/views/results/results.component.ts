@@ -25,7 +25,12 @@ import { DataState } from '../../+state/data.reducer';
     <ol>
       <li>
         <strong>Are you a tax-exempt employer?</strong>
-        <span>{{ this.taxExempt$ | async }}</span>
+        <span *ngIf="(this.taxExempt$ | async) === 'true'; else nope">
+          Yes, I'm a tax-exempt employer
+        </span>
+        <ng-template #nope>
+          <span> No, I'm not a tax-exempt employer</span>
+        </ng-template>
       </li>
 
       <li>
@@ -63,7 +68,7 @@ import { DataState } from '../../+state/data.reducer';
 export class ResultsComponent {
   dataState$: Observable<DataState>;
 
-  taxExempt$: Observable<boolean>;
+  taxExempt$: Observable<boolean | string>;
   employeeCount$: Observable<number>;
   wages$: Observable<number>;
   premiums$: Observable<number>;

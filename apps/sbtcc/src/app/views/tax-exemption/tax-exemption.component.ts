@@ -3,6 +3,15 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatRadioChange } from '@angular/material/radio';
+import { Store } from '@ngrx/store';
+import { Observable, map } from 'rxjs';
+import { DataState } from '../../+state/data.reducer';
+import {
+  loadDataSuccess,
+  loadDataFailure,
+  taxExempt,
+} from '../../+state/data.actions';
 
 @Component({
   selector: 'sbtcc-tax-exemption',
@@ -18,11 +27,16 @@ import { MatRadioModule } from '@angular/material/radio';
       calendar year.
     </p>
 
-    <mat-radio-group class="questions" name="tax-exempt-question">
-      <mat-radio-button class="radio" value="yes">
+    <mat-radio-group
+      class="questions"
+      name="tax-exempt-question"
+      [value]="taxExempt$ | async"
+      (change)="taxExemptChanged($event)"
+    >
+      <mat-radio-button class="radio" value="true">
         Yes, I'm a tax-exempt employer
       </mat-radio-button>
-      <mat-radio-button class="radio" value="no">
+      <mat-radio-button class="radio" value="false">
         No, I'm not a tax-exempt employer
       </mat-radio-button>
     </mat-radio-group>
@@ -33,9 +47,22 @@ import { MatRadioModule } from '@angular/material/radio';
   `,
 })
 export class TaxExemptionComponent {
-  constructor(private router: Router) {}
+  dataState$: Observable<DataState>;
+  taxExempt$: Observable<boolean | string>;
+
+  constructor(
+    private router: Router,
+    private store: Store<{ dataState: DataState }>,
+  ) {
+    this.dataState$ = store.select('dataState');
+    this.taxExempt$ = this.dataState$.pipe(map((state) => state.taxExempt));
+  }
 
   nextStep(): void {
     this.router.navigate(['/employees']);
+  }
+
+  taxExemptChanged(event: MatRadioChange): void {
+    this.store.dispatch(taxExempt({ taxExempt: event.value }));
   }
 }
