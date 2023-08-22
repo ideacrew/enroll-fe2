@@ -1,30 +1,17 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { DataState } from '../../+state/data.reducer';
-import {
-  loadDataSuccess,
-  loadDataFailure,
-  taxExempt,
-} from '../../+state/data.actions';
-import { Observable, map } from 'rxjs';
+import * as DataAction from '../../+state/data.actions';
+import { Observable, Subscription, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'sbtcc-employees',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatInputModule,
-    MatFormFieldModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+  imports: [MatButtonModule, MatInputModule, ReactiveFormsModule],
   template: `
     <h2>2. How many of your employees work 40 hours or more a week?</h2>
 
@@ -37,7 +24,7 @@ import { Store } from '@ngrx/store';
     <form class="form-area">
       <mat-label>Number of full-time employees</mat-label>
       <mat-form-field appearance="outline" floatLabel="always">
-        <input matInput [formControl]="count" />
+        <input matInput [formControl]="countField" />
       </mat-form-field>
     </form>
 
@@ -50,11 +37,12 @@ import { Store } from '@ngrx/store';
   `,
   styleUrls: ['employees.component.scss'],
 })
-export class EmployeesComponent {
+export class EmployeesComponent implements OnInit, OnDestroy {
   dataState$: Observable<DataState>;
   employeeCount$: Observable<number | string>;
 
-  count = new FormControl('');
+  countField = new FormControl('');
+  private employeeCountSubscription!: Subscription;
 
   constructor(
     private router: Router,
@@ -64,17 +52,33 @@ export class EmployeesComponent {
     this.employeeCount$ = this.dataState$.pipe(
       map((state) => state.employeeCount),
     );
+  }
 
-    this.employeeCount$.subscribe((value) => {
-      this.count.setValue(value.toString());
+  ngOnInit(): void {
+    this.employeeCountSubscription = this.employeeCount$.subscribe((value) => {
+      this.countField.setValue(value.toString());
     });
+
+    // TODO: Fix this
+    // this.countField.valueChanges.subscribe((value) => console.log('changed'));
   }
 
   nextStep(): void {
+    this.updateEmployeeCount(parseInt(this.countField.value || '0', 10));
     this.router.navigate(['/wages']);
   }
 
   previousStep(): void {
     this.router.navigate(['/tax-exemption']);
+  }
+
+  updateEmployeeCount(value: number | string): void {
+    this.store.dispatch(
+      DataAction.employeeCount({ employeeCount: value as unknown as number }),
+    );
+  }
+
+  ngOnDestroy() {
+    this.employeeCountSubscription.unsubscribe();
   }
 }

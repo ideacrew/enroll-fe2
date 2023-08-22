@@ -27,7 +27,7 @@ export const dataAdapter: EntityAdapter<DataEntity> =
 export const initialDataState: DataState = dataAdapter.getInitialState({
   // set initial required properties
   taxExempt: 'false',
-  employeeCount: 4,
+  employeeCount: 0,
   wages: 0,
   premiums: 0,
   results: 0,
