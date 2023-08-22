@@ -22,3 +22,8 @@ export const employeeCount = createAction(
   '[Data Page] Employee Count',
   props<{ employeeCount: number }>(),
 );
+
+export const wages = createAction(
+  '[Data Page] Wages',
+  props<{ wages: number }>(),
+);

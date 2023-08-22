@@ -1,21 +1,17 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { DataState } from '../../+state/data.reducer';
+import * as DataAction from '../../+state/data.actions';
+import { Observable, Subscription, map } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'sbtcc-wages',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatInputModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatButtonModule,
-  ],
+  imports: [MatButtonModule, MatInputModule, ReactiveFormsModule],
   template: `
     <h2>
       3. What are your total estimated employee wages for the applicable tax
@@ -32,7 +28,7 @@ import { MatButtonModule } from '@angular/material/button';
     <form class="form-area">
       <mat-label>Total wages in $USD</mat-label>
       <mat-form-field appearance="outline" floatLabel="always">
-        <input matInput />
+        <input matInput [formControl]="wagesField" />
       </mat-form-field>
     </form>
 
@@ -45,14 +41,46 @@ import { MatButtonModule } from '@angular/material/button';
   `,
   styleUrls: ['./wages.component.scss'],
 })
-export class WagesComponent {
-  constructor(private router: Router) {}
+export class WagesComponent implements OnInit, OnDestroy {
+  dataState$: Observable<DataState>;
+  wages$: Observable<number | string>;
+
+  wagesField = new FormControl('');
+  private wagesSubscription!: Subscription;
+
+  constructor(
+    private router: Router,
+    private store: Store<{ dataState: DataState }>,
+  ) {
+    this.dataState$ = store.select('dataState');
+    this.wages$ = this.dataState$.pipe(map((state) => state.wages));
+  }
+
+  ngOnInit(): void {
+    this.wagesSubscription = this.wages$.subscribe((value) => {
+      this.wagesField.setValue(value.toString());
+    });
+
+    // TODO: Fix this
+    // this.countField.valueChanges.subscribe((value) => console.log('changed'));
+  }
+
+  nextStep() {
+    this.updateWages(parseInt(this.wagesField.value || '0', 10));
+    this.router.navigate(['/premiums']);
+  }
 
   previousStep() {
     this.router.navigate(['/employees']);
   }
 
-  nextStep() {
-    this.router.navigate(['/premiums']);
+  updateWages(value: number | string): void {
+    this.store.dispatch(
+      DataAction.wages({ wages: value as unknown as number }),
+    );
+  }
+
+  ngOnDestroy() {
+    this.wagesSubscription.unsubscribe();
   }
 }
