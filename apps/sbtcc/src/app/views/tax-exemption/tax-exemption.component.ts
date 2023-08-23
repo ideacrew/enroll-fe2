@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -42,7 +42,7 @@ import * as DataAction from '../../+state/data.actions';
     </button>
   `,
 })
-export class TaxExemptionComponent {
+export class TaxExemptionComponent implements OnChanges {
   dataState$: Observable<DataState>;
   taxExempt$: Observable<boolean | string>;
 
@@ -52,8 +52,11 @@ export class TaxExemptionComponent {
   ) {
     this.dataState$ = store.select('dataState');
     this.taxExempt$ = this.dataState$.pipe(map((state) => state.taxExempt));
-    this.store.dispatch(DataAction.location({ location: 1 }));
     // this.store.dispatch(DataAction.reset());
+  }
+
+  ngOnChanges(): void {
+    this.store.dispatch(DataAction.location({ location: 1 }));
   }
 
   nextStep(): void {

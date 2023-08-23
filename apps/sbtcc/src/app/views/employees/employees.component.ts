@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -37,7 +37,7 @@ import { Store } from '@ngrx/store';
   `,
   styleUrls: ['employees.component.scss'],
 })
-export class EmployeesComponent implements OnInit, OnDestroy {
+export class EmployeesComponent implements OnInit, OnChanges, OnDestroy {
   dataState$: Observable<DataState>;
   employeeCount$: Observable<number | string>;
 
@@ -52,7 +52,6 @@ export class EmployeesComponent implements OnInit, OnDestroy {
     this.employeeCount$ = this.dataState$.pipe(
       map((state) => state.employeeCount),
     );
-    this.store.dispatch(DataAction.location({ location: 2 }));
   }
 
   ngOnInit(): void {
@@ -62,6 +61,15 @@ export class EmployeesComponent implements OnInit, OnDestroy {
 
     // TODO: Fix this
     // this.countField.valueChanges.subscribe((value) => console.log('changed'));
+    // Focus on the input field
+    const input = document.querySelector('input');
+    if (input) {
+      input.focus();
+    }
+  }
+
+  ngOnChanges(): void {
+    this.store.dispatch(DataAction.location({ location: 2 }));
   }
 
   nextStep(): void {

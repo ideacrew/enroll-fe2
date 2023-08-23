@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
@@ -66,7 +66,7 @@ import * as DataAction from '../../+state/data.actions';
   `,
   styleUrls: ['./results.component.scss'],
 })
-export class ResultsComponent {
+export class ResultsComponent implements OnChanges {
   dataState$: Observable<DataState>;
 
   taxExempt$: Observable<boolean | string>;
@@ -88,7 +88,9 @@ export class ResultsComponent {
     this.wages$ = this.dataState$.pipe(map((state) => state.wages));
     this.premiums$ = this.dataState$.pipe(map((state) => state.premiums));
     this.results$ = this.dataState$.pipe(map((state) => state.results));
+  }
 
+  ngOnChanges(): void {
     this.store.dispatch(DataAction.location({ location: 5 }));
   }
 

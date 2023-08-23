@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -41,7 +41,7 @@ import { Store } from '@ngrx/store';
   `,
   styleUrls: ['./wages.component.scss'],
 })
-export class WagesComponent implements OnInit, OnDestroy {
+export class WagesComponent implements OnInit, OnChanges, OnDestroy {
   dataState$: Observable<DataState>;
   wages$: Observable<number | string>;
 
@@ -54,7 +54,6 @@ export class WagesComponent implements OnInit, OnDestroy {
   ) {
     this.dataState$ = store.select('dataState');
     this.wages$ = this.dataState$.pipe(map((state) => state.wages));
-    this.store.dispatch(DataAction.location({ location: 3 }));
   }
 
   ngOnInit(): void {
@@ -64,6 +63,10 @@ export class WagesComponent implements OnInit, OnDestroy {
 
     // TODO: Fix this
     // this.countField.valueChanges.subscribe((value) => console.log('changed'));
+  }
+
+  ngOnChanges(): void {
+    this.store.dispatch(DataAction.location({ location: 3 }));
   }
 
   nextStep() {

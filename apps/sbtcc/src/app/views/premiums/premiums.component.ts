@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -41,7 +41,7 @@ import { Store } from '@ngrx/store';
   `,
   styleUrls: ['./premiums.component.scss'],
 })
-export class PremiumsComponent implements OnInit, OnDestroy {
+export class PremiumsComponent implements OnInit, OnChanges, OnDestroy {
   dataState$: Observable<DataState>;
   premiums$: Observable<number | string>;
 
@@ -54,7 +54,6 @@ export class PremiumsComponent implements OnInit, OnDestroy {
   ) {
     this.dataState$ = store.select('dataState');
     this.premiums$ = this.dataState$.pipe(map((state) => state.premiums));
-    this.store.dispatch(DataAction.location({ location: 4 }));
   }
 
   ngOnInit(): void {
@@ -64,6 +63,10 @@ export class PremiumsComponent implements OnInit, OnDestroy {
 
     // TODO: Fix this
     // this.countField.valueChanges.subscribe((value) => console.log('changed'));
+  }
+
+  ngOnChanges(): void {
+    this.store.dispatch(DataAction.location({ location: 4 }));
   }
 
   nextStep() {

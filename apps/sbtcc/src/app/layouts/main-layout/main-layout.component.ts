@@ -46,6 +46,6 @@ export class MainLayoutComponent {
 
   constructor(private store: Store<{ dataState: DataState }>) {
     this.dataState$ = this.store.select('dataState');
-    this.testing = this.dataState$.pipe(map((state) => state.location));
+    this.testing = this.dataState$.pipe(map((state) => state.location ?? 0));
   }
 }
