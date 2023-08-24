@@ -36,7 +36,12 @@ import { UtilService } from '../../services/util.service';
     <button mat-raised-button color="basic" (click)="previousStep()">
       Previous Step
     </button>
-    <button mat-raised-button color="primary" (click)="nextStep()">
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="premiumsField.value === null || premiumsField.value === ''"
+      (click)="nextStep()"
+    >
       Continue to Next Step
     </button>
   `,
