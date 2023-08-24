@@ -7,11 +7,12 @@ import { DataState, initialDataState, dataReducer } from './data.reducer';
 describe('Data Reducer', () => {
   const createDataEntity = (id: string): DataEntity => ({
     id,
-    exempt: false,
-    employeeCount: 8,
-    totalWages: 97000,
-    premiumContributions: 7000,
-    result: 90000,
+    location: 0,
+    exempt: true,
+    employeeCount: 0,
+    totalWages: 0,
+    premiumContributions: 0,
+    result: 0,
   });
 
   describe('valid Data actions', () => {
