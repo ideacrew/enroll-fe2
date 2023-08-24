@@ -7,7 +7,7 @@ import { DataEntity } from './data.models';
 export const DATA_FEATURE_KEY = 'data';
 
 export interface DataState extends EntityState<DataEntity> {
-  // selectedId?: string | number; // which Data record has been selected
+  selectedId?: string | number; // which Data record has been selected
   location: string | number;
   taxExempt: boolean | string;
   employeeCount: number;
@@ -43,6 +43,13 @@ const reducer = createReducer(
     location: 0,
     loaded: false,
     error: null,
+  })),
+  on(DataActions.loadDataSuccess, (state, { data }) =>
+    dataAdapter.setAll(data, { ...state, loaded: true }),
+  ),
+  on(DataActions.loadDataFailure, (state, { error }) => ({
+    ...state,
+    error,
   })),
   on(DataActions.reset, () => ({
     ...initialDataState,

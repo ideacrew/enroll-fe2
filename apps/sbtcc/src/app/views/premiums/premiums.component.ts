@@ -7,6 +7,7 @@ import { DataState } from '../../+state/data.reducer';
 import * as DataAction from '../../+state/data.actions';
 import { Observable, Subscription, map } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { UtilService } from '../../services/util.service';
 
 @Component({
   selector: 'sbtcc-premiums',
@@ -50,6 +51,7 @@ export class PremiumsComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(
     private router: Router,
+    private util: UtilService,
     private store: Store<{ dataState: DataState }>,
   ) {
     this.dataState$ = store.select('dataState');
@@ -63,10 +65,16 @@ export class PremiumsComponent implements OnInit, OnChanges, OnDestroy {
 
     // TODO: Fix this
     // this.countField.valueChanges.subscribe((value) => console.log('changed'));
+
+    this.util.focusElement('input');
   }
 
   ngOnChanges(): void {
     this.store.dispatch(DataAction.location({ location: 4 }));
+  }
+
+  ngOnDestroy() {
+    this.premiumSubscription.unsubscribe();
   }
 
   nextStep() {
@@ -82,9 +90,5 @@ export class PremiumsComponent implements OnInit, OnChanges, OnDestroy {
     this.store.dispatch(
       DataAction.premiums({ premiums: value as unknown as number }),
     );
-  }
-
-  ngOnDestroy() {
-    this.premiumSubscription.unsubscribe();
   }
 }

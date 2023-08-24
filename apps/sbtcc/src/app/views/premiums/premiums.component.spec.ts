@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PremiumsComponent } from './premiums.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('PremiumsComponent', () => {
   let component: PremiumsComponent;
@@ -9,6 +10,7 @@ describe('PremiumsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PremiumsComponent, BrowserAnimationsModule],
+      providers: [provideMockStore({})],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PremiumsComponent);

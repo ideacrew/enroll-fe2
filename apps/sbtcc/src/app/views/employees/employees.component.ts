@@ -7,6 +7,7 @@ import { DataState } from '../../+state/data.reducer';
 import * as DataAction from '../../+state/data.actions';
 import { Observable, Subscription, map } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { UtilService } from '../../services/util.service';
 
 @Component({
   selector: 'sbtcc-employees',
@@ -41,11 +42,12 @@ export class EmployeesComponent implements OnInit, OnChanges, OnDestroy {
   dataState$: Observable<DataState>;
   employeeCount$: Observable<number | string>;
 
-  countField = new FormControl('');
+  countField = new FormControl();
   private employeeCountSubscription!: Subscription;
 
   constructor(
     private router: Router,
+    private util: UtilService,
     private store: Store<{ dataState: DataState }>,
   ) {
     this.dataState$ = store.select('dataState');
@@ -61,15 +63,17 @@ export class EmployeesComponent implements OnInit, OnChanges, OnDestroy {
 
     // TODO: Fix this
     // this.countField.valueChanges.subscribe((value) => console.log('changed'));
+
     // Focus on the input field
-    const input = document.querySelector('input');
-    if (input) {
-      input.focus();
-    }
+    this.util.focusElement('input');
   }
 
   ngOnChanges(): void {
     this.store.dispatch(DataAction.location({ location: 2 }));
+  }
+
+  ngOnDestroy() {
+    this.employeeCountSubscription.unsubscribe();
   }
 
   nextStep(): void {
@@ -85,9 +89,5 @@ export class EmployeesComponent implements OnInit, OnChanges, OnDestroy {
     this.store.dispatch(
       DataAction.employeeCount({ employeeCount: value as unknown as number }),
     );
-  }
-
-  ngOnDestroy() {
-    this.employeeCountSubscription.unsubscribe();
   }
 }
