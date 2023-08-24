@@ -44,7 +44,7 @@ import { UtilService } from '../../services/util.service';
 })
 export class PremiumsComponent implements OnInit, OnChanges, OnDestroy {
   dataState$: Observable<DataState>;
-  premiums$: Observable<number | string>;
+  premiums$: Observable<number | null>;
 
   premiumsField = new FormControl('');
   private premiumSubscription!: Subscription;
@@ -60,7 +60,9 @@ export class PremiumsComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
     this.premiumSubscription = this.premiums$.subscribe((value) => {
-      this.premiumsField.setValue(value.toString());
+      if (value !== null) {
+        this.premiumsField.setValue(value.toString());
+      }
     });
 
     // TODO: Fix this

@@ -72,7 +72,7 @@ export class ResultsComponent implements OnChanges {
   taxExempt$: Observable<boolean | null>;
   employeeCount$: Observable<number | null>;
   wages$: Observable<number | null>;
-  premiums$: Observable<number>;
+  premiums$: Observable<number | null>;
   results$: Observable<number>;
 
   constructor(

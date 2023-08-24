@@ -6,6 +6,6 @@ export interface DataEntity {
   exempt: boolean | null;
   employeeCount: number | null;
   totalWages: number | null;
-  totalContributions: number;
+  premiumContributions: number | null;
   result: number;
 }

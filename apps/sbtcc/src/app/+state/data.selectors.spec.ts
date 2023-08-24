@@ -15,7 +15,7 @@ describe('Data Selectors', () => {
       exempt: false,
       employeeCount: 8,
       totalWages: 97000,
-      totalContributions: 7000,
+      premiumContributions: 7000,
       result: 90000,
     } as DataEntity);
 

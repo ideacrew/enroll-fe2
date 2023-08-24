@@ -12,7 +12,7 @@ export interface DataState extends EntityState<DataEntity> {
   taxExempt: boolean | null;
   employeeCount: number | null;
   wages: number | null;
-  premiums: number;
+  premiums: number | null;
   results: number;
   loaded: boolean; // has the Data list been loaded
   error?: string | null; // last known error (if any)
@@ -31,7 +31,7 @@ export const initialDataState: DataState = dataAdapter.getInitialState({
   taxExempt: null,
   employeeCount: null,
   wages: null,
-  premiums: 0,
+  premiums: null,
   results: 0,
   loaded: false,
 });
