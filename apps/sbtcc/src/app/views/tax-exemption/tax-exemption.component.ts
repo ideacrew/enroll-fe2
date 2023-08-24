@@ -13,6 +13,7 @@ import * as DataAction from '../../+state/data.actions';
   selector: 'sbtcc-tax-exemption',
   standalone: true,
   imports: [CommonModule, MatButtonModule, MatRadioModule],
+
   styleUrls: ['tax-exemption.component.scss'],
   template: `
     <h2>1. Are you a tax-exempt employer?</h2>
@@ -37,7 +38,12 @@ import * as DataAction from '../../+state/data.actions';
       </mat-radio-button>
     </mat-radio-group>
 
-    <button mat-raised-button color="primary" (click)="nextStep()">
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="buttonDisabled"
+      (click)="nextStep()"
+    >
       Continue to Next Step
     </button>
   `,
@@ -46,6 +52,8 @@ export class TaxExemptionComponent implements OnChanges {
   dataState$: Observable<DataState>;
   taxExempt$: Observable<boolean | null>;
 
+  buttonDisabled = true;
+
   constructor(
     private router: Router,
     private store: Store<{ dataState: DataState }>,
@@ -53,6 +61,10 @@ export class TaxExemptionComponent implements OnChanges {
     this.dataState$ = store.select('dataState');
     this.taxExempt$ = this.dataState$.pipe(map((state) => state.taxExempt));
     // this.store.dispatch(DataAction.reset());
+
+    // Enable the button when the taxExempt$ observable emits a value other than null
+    this.taxExempt$.subscribe((data) => (this.buttonDisabled = data === null))
+      .unsubscribe;
   }
 
   ngOnChanges(): void {

@@ -77,7 +77,7 @@ export class EmployeesComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   nextStep(): void {
-    this.updateEmployeeCount(parseInt(this.countField.value || '0', 10));
+    this.updateEmployeeCount(this.countField.value);
     this.router.navigate(['/wages']);
   }
 
@@ -85,9 +85,7 @@ export class EmployeesComponent implements OnInit, OnChanges, OnDestroy {
     this.router.navigate(['/tax-exemption']);
   }
 
-  updateEmployeeCount(value: number | string): void {
-    this.store.dispatch(
-      DataAction.employeeCount({ employeeCount: value as unknown as number }),
-    );
+  updateEmployeeCount(value: number): void {
+    this.store.dispatch(DataAction.employeeCount({ employeeCount: value }));
   }
 }

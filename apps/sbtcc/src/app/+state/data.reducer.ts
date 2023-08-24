@@ -41,7 +41,7 @@ const reducer = createReducer(
 
   on(DataActions.initData, (state) => ({
     ...state,
-    loaded: false,
+    loaded: true,
     error: null,
   })),
 
