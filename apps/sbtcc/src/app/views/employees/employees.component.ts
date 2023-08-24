@@ -40,7 +40,7 @@ import { UtilService } from '../../services/util.service';
 })
 export class EmployeesComponent implements OnInit, OnChanges, OnDestroy {
   dataState$: Observable<DataState>;
-  employeeCount$: Observable<number | string>;
+  employeeCount$: Observable<number | null>;
 
   countField = new FormControl();
   private employeeCountSubscription!: Subscription;
@@ -58,7 +58,7 @@ export class EmployeesComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
     this.employeeCountSubscription = this.employeeCount$.subscribe((value) => {
-      this.countField.setValue(value.toString());
+      this.countField.setValue(value);
     });
 
     // TODO: Fix this

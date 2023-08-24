@@ -10,7 +10,7 @@ export interface DataState extends EntityState<DataEntity> {
   selectedId?: string | number; // which Data record has been selected
   location: string | number;
   taxExempt: boolean | null;
-  employeeCount: number;
+  employeeCount: number | null;
   wages: number;
   premiums: number;
   results: number;
@@ -29,7 +29,7 @@ export const initialDataState: DataState = dataAdapter.getInitialState({
   // set initial required properties
   location: 0,
   taxExempt: null,
-  employeeCount: 0,
+  employeeCount: null,
   wages: 0,
   premiums: 0,
   results: 0,

@@ -4,7 +4,7 @@
 export interface DataEntity {
   id: string | number; // Primary ID
   exempt: boolean | null;
-  employeeCount: number;
+  employeeCount: number | null;
   totalWages: number;
   totalContributions: number;
   result: number;

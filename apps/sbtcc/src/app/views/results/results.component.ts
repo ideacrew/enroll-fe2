@@ -70,7 +70,7 @@ export class ResultsComponent implements OnChanges {
   dataState$: Observable<DataState>;
 
   taxExempt$: Observable<boolean | null>;
-  employeeCount$: Observable<number>;
+  employeeCount$: Observable<number | null>;
   wages$: Observable<number>;
   premiums$: Observable<number>;
   results$: Observable<number>;
