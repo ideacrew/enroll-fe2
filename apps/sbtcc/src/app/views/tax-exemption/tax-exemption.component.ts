@@ -1,4 +1,4 @@
-import { Component, OnChanges } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -48,7 +48,7 @@ import * as DataAction from '../../+state/data.actions';
     </button>
   `,
 })
-export class TaxExemptionComponent implements OnChanges {
+export class TaxExemptionComponent implements OnInit {
   dataState$: Observable<DataState>;
   taxExempt$: Observable<boolean | null>;
 
@@ -67,7 +67,7 @@ export class TaxExemptionComponent implements OnChanges {
       .unsubscribe;
   }
 
-  ngOnChanges(): void {
+  ngOnInit(): void {
     this.store.dispatch(DataAction.location({ location: 1 }));
   }
 

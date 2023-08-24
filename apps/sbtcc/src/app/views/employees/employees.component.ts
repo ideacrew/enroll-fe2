@@ -43,7 +43,7 @@ import { UtilService } from '../../services/util.service';
   `,
   styleUrls: ['employees.component.scss'],
 })
-export class EmployeesComponent implements OnInit, OnChanges, OnDestroy {
+export class EmployeesComponent implements OnInit, OnDestroy {
   dataState$: Observable<DataState>;
   employeeCount$: Observable<number | null>;
 
@@ -67,12 +67,10 @@ export class EmployeesComponent implements OnInit, OnChanges, OnDestroy {
       this.countField.setValue(value);
     });
 
+    this.store.dispatch(DataAction.location({ location: 2 }));
+
     // Focus on the input field
     this.util.focusElement('input');
-  }
-
-  ngOnChanges(): void {
-    this.store.dispatch(DataAction.location({ location: 2 }));
   }
 
   ngOnDestroy() {

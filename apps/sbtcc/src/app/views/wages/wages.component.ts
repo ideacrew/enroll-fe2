@@ -47,7 +47,7 @@ import { UtilService } from '../../services/util.service';
   `,
   styleUrls: ['./wages.component.scss'],
 })
-export class WagesComponent implements OnInit, OnChanges, OnDestroy {
+export class WagesComponent implements OnInit, OnDestroy {
   dataState$: Observable<DataState>;
   wages$: Observable<number | null>;
 
@@ -70,15 +70,14 @@ export class WagesComponent implements OnInit, OnChanges, OnDestroy {
       }
     });
 
+    this.store.dispatch(DataAction.location({ location: 3 }));
+
     // TODO: Fix this
     // this.countField.valueChanges.subscribe((value) => console.log('changed'));
 
     this.util.focusElement('input');
   }
 
-  ngOnChanges(): void {
-    this.store.dispatch(DataAction.location({ location: 3 }));
-  }
   ngOnDestroy() {
     this.wagesSubscription.unsubscribe();
   }

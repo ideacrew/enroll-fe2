@@ -66,7 +66,7 @@ import * as DataAction from '../../+state/data.actions';
   `,
   styleUrls: ['./results.component.scss'],
 })
-export class ResultsComponent implements OnChanges {
+export class ResultsComponent {
   dataState$: Observable<DataState>;
 
   taxExempt$: Observable<boolean | null>;
@@ -88,9 +88,7 @@ export class ResultsComponent implements OnChanges {
     this.wages$ = this.dataState$.pipe(map((state) => state.wages));
     this.premiums$ = this.dataState$.pipe(map((state) => state.premiums));
     this.results$ = this.dataState$.pipe(map((state) => state.results));
-  }
 
-  ngOnChanges(): void {
     this.store.dispatch(DataAction.location({ location: 5 }));
   }
 

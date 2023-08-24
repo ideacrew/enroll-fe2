@@ -47,12 +47,11 @@ import { UtilService } from '../../services/util.service';
   `,
   styleUrls: ['./premiums.component.scss'],
 })
-export class PremiumsComponent implements OnInit, OnChanges, OnDestroy {
+export class PremiumsComponent implements OnInit {
   dataState$: Observable<DataState>;
   premiums$: Observable<number | null>;
 
   premiumsField = new FormControl('');
-  private premiumSubscription!: Subscription;
 
   constructor(
     private router: Router,
@@ -64,28 +63,24 @@ export class PremiumsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.premiumSubscription = this.premiums$.subscribe((value) => {
+    this.premiums$.subscribe((value) => {
       if (value !== null) {
         this.premiumsField.setValue(value.toString());
       }
-    });
+    }).unsubscribe;
+
+    this.store.dispatch(DataAction.location({ location: 4 }));
 
     // TODO: Fix this
-    // this.countField.valueChanges.subscribe((value) => console.log('changed'));
+    // this.premiumsField.valueChanges.subscribe((value) =>
+    //   this.updatePremiums(parseInt(value as string)),
+    // ).unsubscribe;
 
     this.util.focusElement('input');
   }
 
-  ngOnChanges(): void {
-    this.store.dispatch(DataAction.location({ location: 4 }));
-  }
-
-  ngOnDestroy() {
-    this.premiumSubscription.unsubscribe();
-  }
-
   nextStep() {
-    this.updatePremiums(parseInt(this.premiumsField.value || '0', 10));
+    this.updatePremiums(parseInt(this.premiumsField.value as string));
     this.router.navigate(['/results']);
   }
 
@@ -93,9 +88,7 @@ export class PremiumsComponent implements OnInit, OnChanges, OnDestroy {
     this.router.navigate(['/wages']);
   }
 
-  updatePremiums(value: number | string): void {
-    this.store.dispatch(
-      DataAction.premiums({ premiums: value as unknown as number }),
-    );
+  updatePremiums(value: number): void {
+    this.store.dispatch(DataAction.premiums({ premiums: value }));
   }
 }
