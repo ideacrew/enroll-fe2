@@ -44,7 +44,7 @@ import { UtilService } from '../../services/util.service';
 })
 export class WagesComponent implements OnInit, OnChanges, OnDestroy {
   dataState$: Observable<DataState>;
-  wages$: Observable<number | string>;
+  wages$: Observable<number | null>;
 
   wagesField = new FormControl('');
   private wagesSubscription!: Subscription;
@@ -60,7 +60,9 @@ export class WagesComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
     this.wagesSubscription = this.wages$.subscribe((value) => {
-      this.wagesField.setValue(value.toString());
+      if (value !== null) {
+        this.wagesField.setValue(value.toString());
+      }
     });
 
     // TODO: Fix this

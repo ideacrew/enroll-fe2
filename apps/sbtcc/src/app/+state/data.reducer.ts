@@ -11,7 +11,7 @@ export interface DataState extends EntityState<DataEntity> {
   location: string | number;
   taxExempt: boolean | null;
   employeeCount: number | null;
-  wages: number;
+  wages: number | null;
   premiums: number;
   results: number;
   loaded: boolean; // has the Data list been loaded
@@ -30,7 +30,7 @@ export const initialDataState: DataState = dataAdapter.getInitialState({
   location: 0,
   taxExempt: null,
   employeeCount: null,
-  wages: 0,
+  wages: null,
   premiums: 0,
   results: 0,
   loaded: false,
