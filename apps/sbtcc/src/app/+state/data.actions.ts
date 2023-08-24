@@ -17,7 +17,7 @@ export const reset = createAction('[Data] Reset Data');
 
 export const location = createAction(
   '[Data] Update Location',
-  props<{ location: number | string }>(),
+  props<{ location: number }>(),
 );
 
 export const taxExempt = createAction(

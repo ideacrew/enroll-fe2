@@ -8,7 +8,7 @@ export const DATA_FEATURE_KEY = 'data';
 
 export interface DataState extends EntityState<DataEntity> {
   selectedId?: string | number; // which Data record has been selected
-  location: string | number;
+  location: number;
   taxExempt: boolean | null;
   employeeCount: number | null;
   wages: number | null;
@@ -40,7 +40,6 @@ const reducer = createReducer(
   initialDataState,
   on(DataActions.initData, (state) => ({
     ...state,
-    location: 0,
     loaded: false,
     error: null,
   })),
