@@ -1,11 +1,11 @@
-import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { DataState } from '../../+state/data.reducer';
 import * as DataAction from '../../+state/data.actions';
-import { Observable, Subscription, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { UtilService } from '../../services/util.service';
 
