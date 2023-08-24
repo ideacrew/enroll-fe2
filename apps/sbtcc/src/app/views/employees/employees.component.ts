@@ -32,7 +32,12 @@ import { UtilService } from '../../services/util.service';
     <button mat-raised-button color="basic" (click)="previousStep()">
       Previous Step
     </button>
-    <button mat-raised-button color="primary" (click)="nextStep()">
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="countField.value === null || countField.value === ''"
+      (click)="nextStep()"
+    >
       Continue to Next Step
     </button>
   `,
@@ -43,6 +48,7 @@ export class EmployeesComponent implements OnInit, OnChanges, OnDestroy {
   employeeCount$: Observable<number | null>;
 
   countField = new FormControl();
+
   private employeeCountSubscription!: Subscription;
 
   constructor(
@@ -60,9 +66,6 @@ export class EmployeesComponent implements OnInit, OnChanges, OnDestroy {
     this.employeeCountSubscription = this.employeeCount$.subscribe((value) => {
       this.countField.setValue(value);
     });
-
-    // TODO: Fix this
-    // this.countField.valueChanges.subscribe((value) => console.log('changed'));
 
     // Focus on the input field
     this.util.focusElement('input');
