@@ -99,4 +99,8 @@ export class ResultsComponent {
   nextStep() {
     this.router.navigate(['/tax-exemption']);
   }
+
+  back(): void {
+    this.previousStep();
+  }
 }

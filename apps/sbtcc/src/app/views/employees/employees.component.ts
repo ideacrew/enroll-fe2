@@ -22,12 +22,18 @@ import { UtilService } from '../../services/util.service';
       each).
     </p>
 
-    <form class="form-area">
+    <div class="form-area">
       <mat-label>Number of full-time employees</mat-label>
       <mat-form-field appearance="outline" floatLabel="always">
-        <input matInput [formControl]="countField" />
+        <input
+          matInput
+          [formControl]="countField"
+          (keyup.enter)="submit()"
+          (keyup.arrowright)="submit()"
+          (keyup.arrowleft)="back()"
+        />
       </mat-form-field>
-    </form>
+    </div>
 
     <button mat-raised-button color="basic" (click)="previousStep()">
       Previous Step
@@ -88,5 +94,13 @@ export class EmployeesComponent implements OnInit, OnDestroy {
 
   updateEmployeeCount(value: number): void {
     this.store.dispatch(DataAction.employeeCount({ employeeCount: value }));
+  }
+
+  submit(): void {
+    this.nextStep();
+  }
+
+  back(): void {
+    this.previousStep();
   }
 }

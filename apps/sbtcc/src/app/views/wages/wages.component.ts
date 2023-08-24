@@ -26,12 +26,18 @@ import { UtilService } from '../../services/util.service';
       base limit).
     </p>
 
-    <form class="form-area">
+    <div class="form-area">
       <mat-label>Total wages in $USD</mat-label>
       <mat-form-field appearance="outline" floatLabel="always">
-        <input matInput [formControl]="wagesField" />
+        <input
+          matInput
+          [formControl]="wagesField"
+          (keyup.enter)="submit()"
+          (keyup.arrowright)="submit()"
+          (keyup.arrowleft)="back()"
+        />
       </mat-form-field>
-    </form>
+    </div>
 
     <button mat-raised-button color="basic" (click)="previousStep()">
       Previous Step
@@ -95,5 +101,13 @@ export class WagesComponent implements OnInit, OnDestroy {
     this.store.dispatch(
       DataAction.wages({ wages: value as unknown as number }),
     );
+  }
+
+  submit(): void {
+    this.nextStep();
+  }
+
+  back(): void {
+    this.previousStep();
   }
 }

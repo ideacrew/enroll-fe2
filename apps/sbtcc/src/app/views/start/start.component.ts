@@ -30,6 +30,7 @@ export class StartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.store.dispatch(DataAction.reset());
     this.store.dispatch(DataAction.location({ location: 0 }));
   }
 
