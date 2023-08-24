@@ -10,7 +10,7 @@ export const loadDataSuccess = createAction(
 
 export const loadDataFailure = createAction(
   '[Data/API] Load Data Failure',
-  props<{ error: any }>(),
+  props<{ error: Error }>(),
 );
 
 export const reset = createAction('[Data] Reset Data');

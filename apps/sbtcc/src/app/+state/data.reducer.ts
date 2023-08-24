@@ -9,7 +9,7 @@ export const DATA_FEATURE_KEY = 'data';
 export interface DataState extends EntityState<DataEntity> {
   selectedId?: string | number; // which Data record has been selected
   location: string | number;
-  taxExempt: boolean | string;
+  taxExempt: boolean | null;
   employeeCount: number;
   wages: number;
   premiums: number;
@@ -28,7 +28,7 @@ export const dataAdapter: EntityAdapter<DataEntity> =
 export const initialDataState: DataState = dataAdapter.getInitialState({
   // set initial required properties
   location: 0,
-  taxExempt: false,
+  taxExempt: null,
   employeeCount: 0,
   wages: 0,
   premiums: 0,
@@ -49,7 +49,7 @@ const reducer = createReducer(
   ),
   on(DataActions.loadDataFailure, (state, { error }) => ({
     ...state,
-    error,
+    error: error.toString(),
   })),
   on(DataActions.reset, () => ({
     ...initialDataState,

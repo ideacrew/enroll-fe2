@@ -26,7 +26,7 @@ import * as DataAction from '../../+state/data.actions';
     <ol>
       <li>
         <strong>Are you a tax-exempt employer?</strong>
-        <span *ngIf="(this.taxExempt$ | async) === 'true'; else nope">
+        <span *ngIf="(this.taxExempt$ | async) === true; else nope">
           Yes, I'm a tax-exempt employer
         </span>
         <ng-template #nope>
@@ -69,7 +69,7 @@ import * as DataAction from '../../+state/data.actions';
 export class ResultsComponent implements OnChanges {
   dataState$: Observable<DataState>;
 
-  taxExempt$: Observable<boolean | string>;
+  taxExempt$: Observable<boolean | null>;
   employeeCount$: Observable<number>;
   wages$: Observable<number>;
   premiums$: Observable<number>;

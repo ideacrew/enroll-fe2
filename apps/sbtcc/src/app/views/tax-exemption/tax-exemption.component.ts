@@ -44,7 +44,7 @@ import * as DataAction from '../../+state/data.actions';
 })
 export class TaxExemptionComponent implements OnChanges {
   dataState$: Observable<DataState>;
-  taxExempt$: Observable<boolean | string>;
+  taxExempt$: Observable<boolean | null>;
 
   constructor(
     private router: Router,
