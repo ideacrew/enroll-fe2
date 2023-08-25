@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { DataState } from '../../+state/data.reducer';
 import * as DataAction from '../../+state/data.actions';
 import { Observable, map } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { UtilService } from '../../services/util.service';
 
 @Component({
@@ -55,7 +55,7 @@ export class PremiumsComponent implements OnInit {
   dataState$: Observable<DataState>;
   premiums$: Observable<number | null>;
 
-  premiumsField = new FormControl('');
+  premiumsField: FormControl;
 
   constructor(
     private router: Router,
@@ -63,35 +63,33 @@ export class PremiumsComponent implements OnInit {
     private store: Store<{ dataState: DataState }>,
   ) {
     this.dataState$ = store.select('dataState');
+
     this.premiums$ = this.dataState$.pipe(map((state) => state.premiums));
+
+    this.premiumsField = new FormControl('');
+
     this.store.dispatch(DataAction.location({ location: 4 }));
   }
 
   ngOnInit(): void {
-    this.premiums$.subscribe((value) => {
-      if (value !== null) {
-        this.premiumsField.setValue(value.toString());
-      }
-    }).unsubscribe;
+    this.store
+      .pipe(select((state) => state.dataState.premiums))
+      .subscribe((count) => {
+        this.premiumsField.setValue(count, { emitEvent: false });
+      }).unsubscribe;
 
-    // TODO: Fix this
-    // this.premiumsField.valueChanges.subscribe((value) =>
-    //   this.updatePremiums(parseInt(value as string)),
-    // ).unsubscribe;
+    this.premiumsField.valueChanges.subscribe((value: number) => {
+      this.store.dispatch(DataAction.premiums({ premiums: value }));
+    }).unsubscribe;
 
     this.util.focusElement('input');
   }
 
   nextStep() {
-    this.updatePremiums(parseInt(this.premiumsField.value as string));
     this.router.navigate(['/results']);
   }
 
   previousStep() {
     this.router.navigate(['/wages']);
-  }
-
-  updatePremiums(value: number): void {
-    this.store.dispatch(DataAction.premiums({ premiums: value }));
   }
 }

@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { DataState } from '../../+state/data.reducer';
 import * as DataAction from '../../+state/data.actions';
 import { Observable, map } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { UtilService } from '../../services/util.service';
 
 @Component({
@@ -51,7 +51,7 @@ export class WagesComponent implements OnInit {
   dataState$: Observable<DataState>;
   wages$: Observable<number | null>;
 
-  wagesField = new FormControl('');
+  wagesField: FormControl;
 
   constructor(
     private router: Router,
@@ -59,33 +59,33 @@ export class WagesComponent implements OnInit {
     private store: Store<{ dataState: DataState }>,
   ) {
     this.dataState$ = store.select('dataState');
+
     this.wages$ = this.dataState$.pipe(map((state) => state.wages));
+
+    this.wagesField = new FormControl('');
+
     this.store.dispatch(DataAction.location({ location: 3 }));
   }
 
   ngOnInit(): void {
-    this.wages$.subscribe((value) => {
-      if (value !== null) {
-        this.wagesField.setValue(value.toString());
-      }
-    }).unsubscribe;
+    this.store
+      .pipe(select((state) => state.dataState.wages))
+      .subscribe((count) => {
+        this.wagesField.setValue(count, { emitEvent: false });
+      }).unsubscribe;
 
-    // TODO: Fix this
-    // this.countField.valueChanges.subscribe((value) => console.log('changed'));
+    this.wagesField.valueChanges.subscribe((value: number) => {
+      this.store.dispatch(DataAction.wages({ wages: value }));
+    }).unsubscribe;
 
     this.util.focusElement('input');
   }
 
   nextStep() {
-    this.updateWages(parseInt(this.wagesField.value || '0', 10));
     this.router.navigate(['/premiums']);
   }
 
   previousStep() {
     this.router.navigate(['/employees']);
-  }
-
-  updateWages(value: number): void {
-    this.store.dispatch(DataAction.wages({ wages: value }));
   }
 }
