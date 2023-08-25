@@ -25,7 +25,12 @@ import { UtilService } from '../../services/util.service';
     <div class="form-area">
       <mat-label>Number of full-time employees</mat-label>
       <mat-form-field appearance="outline" floatLabel="always">
-        <input matInput [formControl]="countField" (keyup.enter)="nextStep()" />
+        <input
+          matInput
+          type="number"
+          [formControl]="countField"
+          (keyup.enter)="nextStep()"
+        />
       </mat-form-field>
     </div>
 

@@ -36,3 +36,5 @@ export const premiums = createAction(
   '[Data] Premiums',
   props<{ premiums: number }>(),
 );
+
+export const results = createAction('[Data] Results');

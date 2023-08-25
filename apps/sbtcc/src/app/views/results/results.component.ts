@@ -55,7 +55,7 @@ import * as DataAction from '../../+state/data.actions';
       </li>
     </ol>
 
-    <h3>Estimated annual tax-credit: {{ this.results$ | async }}</h3>
+    <h3>Estimated annual tax-credit: $ {{ this.results$ | async }}</h3>
 
     <button mat-raised-button color="basic" (click)="previousStep()">
       Previous Step
@@ -90,6 +90,8 @@ export class ResultsComponent {
     this.results$ = this.dataState$.pipe(map((state) => state.results));
 
     this.store.dispatch(DataAction.location({ location: 5 }));
+
+    this.calculateResults();
   }
 
   previousStep() {
@@ -99,5 +101,9 @@ export class ResultsComponent {
   nextStep() {
     this.store.dispatch(DataAction.reset());
     this.router.navigate(['/tax-exemption']);
+  }
+
+  calculateResults() {
+    this.store.dispatch(DataAction.results());
   }
 }

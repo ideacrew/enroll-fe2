@@ -29,6 +29,7 @@ import { UtilService } from '../../services/util.service';
     <div class="form-area">
       <mat-label>Total contribution in $USD</mat-label>
       <mat-form-field appearance="outline" floatLabel="always">
+        <span matPrefix>$</span>
         <input
           matInput
           [formControl]="premiumsField"

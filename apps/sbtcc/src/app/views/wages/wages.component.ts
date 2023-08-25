@@ -29,7 +29,13 @@ import { UtilService } from '../../services/util.service';
     <div class="form-area">
       <mat-label>Total wages in $USD</mat-label>
       <mat-form-field appearance="outline" floatLabel="always">
-        <input matInput [formControl]="wagesField" (keyup.enter)="nextStep()" />
+        <span matPrefix>$</span>
+        <input
+          matInput
+          type="number"
+          [formControl]="wagesField"
+          (keyup.enter)="nextStep()"
+        />
       </mat-form-field>
     </div>
 

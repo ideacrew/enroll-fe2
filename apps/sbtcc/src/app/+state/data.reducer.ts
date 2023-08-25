@@ -82,6 +82,13 @@ const reducer = createReducer(
     ...state,
     premiums,
   })),
+
+  on(DataActions.results, (state) => ({
+    ...state,
+    results:
+      ((state.wages || 0) * 0.35 - (state.premiums || 0) * 0.35) *
+      (state.employeeCount || 0),
+  })),
 );
 
 export function dataReducer(state: DataState | undefined, action: Action) {
