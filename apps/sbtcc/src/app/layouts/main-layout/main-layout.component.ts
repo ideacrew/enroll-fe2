@@ -30,7 +30,7 @@ import { CommonModule } from '@angular/common';
 
       <div class="content">
         <div class="inner-content">
-          <sbtcc-sidenav [currentLocation]="testing | async" />
+          <sbtcc-sidenav [currentLocation]="currentLocation | async" />
 
           <main>
             <h1>Small Business Tax Credit Calculator</h1>
@@ -47,7 +47,7 @@ export class MainLayoutComponent implements OnInit, AfterViewInit {
   title = 'sbtcc App';
 
   dataState$: Observable<DataState>;
-  testing = new Observable<number>();
+  currentLocation = new Observable<number>();
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -57,7 +57,7 @@ export class MainLayoutComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.testing = this.dataState$.pipe(map((state) => state.location));
+    this.currentLocation = this.dataState$.pipe(map((state) => state.location));
   }
 
   ngAfterViewInit(): void {
