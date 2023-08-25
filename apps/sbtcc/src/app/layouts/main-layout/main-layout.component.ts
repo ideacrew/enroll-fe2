@@ -30,10 +30,10 @@ import { CommonModule } from '@angular/common';
 
       <div class="content">
         <div class="inner-content">
-          <sbtcc-sidenav [currentLocation]="(testing | async) || 0" />
+          <sbtcc-sidenav [currentLocation]="testing | async" />
 
           <main>
-            <h1>Small Business Tax Credit Calculator {{ testing | async }}</h1>
+            <h1>Small Business Tax Credit Calculator</h1>
             <router-outlet />
           </main>
         </div>
@@ -47,7 +47,7 @@ export class MainLayoutComponent implements OnInit, AfterViewInit {
   title = 'sbtcc App';
 
   dataState$: Observable<DataState>;
-  testing = new Observable<number | string>();
+  testing = new Observable<number>();
 
   constructor(
     private cdr: ChangeDetectorRef,
