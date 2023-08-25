@@ -32,9 +32,7 @@ import { UtilService } from '../../services/util.service';
         <input
           matInput
           [formControl]="premiumsField"
-          (keyup.enter)="submit()"
-          (keyup.arrowright)="submit()"
-          (keyup.arrowleft)="back()"
+          (keyup.enter)="nextStep()"
         />
       </mat-form-field>
     </div>
@@ -96,13 +94,5 @@ export class PremiumsComponent implements OnInit {
 
   updatePremiums(value: number): void {
     this.store.dispatch(DataAction.premiums({ premiums: value }));
-  }
-
-  submit(): void {
-    this.nextStep();
-  }
-
-  back(): void {
-    this.previousStep();
   }
 }

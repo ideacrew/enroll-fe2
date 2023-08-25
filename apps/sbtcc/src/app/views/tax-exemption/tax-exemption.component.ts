@@ -28,7 +28,7 @@ import * as DataAction from '../../+state/data.actions';
       class="questions"
       name="tax-exempt-question"
       [value]="taxExempt$ | async"
-      (keyup.enter)="submit()"
+      (keyup.enter)="nextStep()"
       (change)="taxExemptChanged($event)"
     >
       <mat-radio-button class="radio" value="true">
@@ -78,9 +78,5 @@ export class TaxExemptionComponent implements OnInit {
 
   taxExemptChanged(event: MatRadioChange): void {
     this.store.dispatch(DataAction.taxExempt({ taxExempt: event.value }));
-  }
-
-  submit(): void {
-    this.nextStep();
   }
 }

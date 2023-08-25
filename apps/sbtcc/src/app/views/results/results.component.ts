@@ -97,10 +97,7 @@ export class ResultsComponent {
   }
 
   nextStep() {
+    this.store.dispatch(DataAction.reset());
     this.router.navigate(['/tax-exemption']);
-  }
-
-  back(): void {
-    this.previousStep();
   }
 }
