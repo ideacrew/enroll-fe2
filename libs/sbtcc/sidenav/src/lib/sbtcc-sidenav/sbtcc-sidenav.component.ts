@@ -27,7 +27,7 @@ import { CommonModule } from '@angular/common';
 
       <div class="alt">
         <a routerLink="/tax-exemption" (click)="resetData()">Start Over</a>
-        <a routerLink="/">Return Home</a>
+        <a routerLink="/" (click)="resetData()">Return Home</a>
       </div>
     </div>
   `,

@@ -74,6 +74,8 @@ export class TaxExemptionComponent {
   }
 
   taxExemptChanged(event: MatRadioChange): void {
-    this.store.dispatch(DataAction.taxExempt({ taxExempt: event.value }));
+    this.store.dispatch(
+      DataAction.taxExempt({ taxExempt: event.value === 'true' }),
+    );
   }
 }

@@ -29,7 +29,6 @@ export class StartComponent {
     private store: Store<{ dataState: DataState }>,
   ) {
     this.store.dispatch(DataAction.location({ location: 0 }));
-    this.store.dispatch(DataAction.reset());
   }
 
   nextStep(): void {
