@@ -70,19 +70,16 @@ const reducer = createReducer(
 
   on(DataActions.employeeCount, (state, { employeeCount }) => ({
     ...state,
-    location: 1,
     employeeCount,
   })),
 
   on(DataActions.wages, (state, { wages }) => ({
     ...state,
-    location: 2,
     wages,
   })),
 
   on(DataActions.premiums, (state, { premiums }) => ({
     ...state,
-    location: 3,
     premiums,
   })),
 );
