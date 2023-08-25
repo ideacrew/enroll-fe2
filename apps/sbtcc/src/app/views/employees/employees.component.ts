@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { DataState } from '../../+state/data.reducer';
 import * as DataAction from '../../+state/data.actions';
 import { Observable, map } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { UtilService } from '../../services/util.service';
 
 @Component({
@@ -47,7 +47,7 @@ export class EmployeesComponent implements OnInit {
   dataState$: Observable<DataState>;
   employeeCount$: Observable<number | null>;
 
-  countField = new FormControl();
+  countField: FormControl;
 
   constructor(
     private router: Router,
@@ -55,15 +55,25 @@ export class EmployeesComponent implements OnInit {
     private store: Store<{ dataState: DataState }>,
   ) {
     this.dataState$ = store.select('dataState');
+
     this.employeeCount$ = this.dataState$.pipe(
       map((state) => state.employeeCount),
     );
+
+    this.countField = new FormControl();
+
     this.store.dispatch(DataAction.location({ location: 2 }));
   }
 
   ngOnInit(): void {
-    this.employeeCount$.subscribe((value) => {
-      this.countField.setValue(value);
+    this.store
+      .pipe(select((state) => state.dataState.employeeCount))
+      .subscribe((count) => {
+        this.countField.setValue(count, { emitEvent: false });
+      }).unsubscribe;
+
+    this.countField.valueChanges.subscribe((value: number) => {
+      this.store.dispatch(DataAction.employeeCount({ employeeCount: value }));
     }).unsubscribe;
 
     // Focus on the input field
@@ -71,15 +81,10 @@ export class EmployeesComponent implements OnInit {
   }
 
   nextStep(): void {
-    this.updateEmployeeCount(this.countField.value);
     this.router.navigate(['/wages']);
   }
 
   previousStep(): void {
     this.router.navigate(['/tax-exemption']);
-  }
-
-  updateEmployeeCount(value: number): void {
-    this.store.dispatch(DataAction.employeeCount({ employeeCount: value }));
   }
 }
