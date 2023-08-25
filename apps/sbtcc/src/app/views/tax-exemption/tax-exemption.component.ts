@@ -61,7 +61,6 @@ export class TaxExemptionComponent {
   ) {
     this.dataState$ = store.select('dataState');
     this.taxExempt$ = this.dataState$.pipe(map((state) => state.taxExempt));
-    // this.store.dispatch(DataAction.reset());
 
     // Enable the button when the taxExempt$ observable emits a value other than null
     this.taxExempt$.subscribe((data) => (this.buttonDisabled = data === null))

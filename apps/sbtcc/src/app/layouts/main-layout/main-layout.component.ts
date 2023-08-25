@@ -12,6 +12,7 @@ import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { DataState } from '../../+state/data.reducer';
 import { CommonModule } from '@angular/common';
+import * as DataAction from '../../+state/data.actions';
 
 @Component({
   selector: 'sbtcc-main-layout',
@@ -30,7 +31,10 @@ import { CommonModule } from '@angular/common';
 
       <div class="content">
         <div class="inner-content">
-          <sbtcc-sidenav [currentLocation]="currentLocation | async" />
+          <sbtcc-sidenav
+            [currentLocation]="currentLocation | async"
+            (resetDataEvent)="resetData()"
+          />
 
           <main>
             <h1>Small Business Tax Credit Calculator</h1>
@@ -62,5 +66,9 @@ export class MainLayoutComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.cdr.detectChanges();
+  }
+
+  resetData(): void {
+    this.store.dispatch(DataAction.reset());
   }
 }

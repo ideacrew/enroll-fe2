@@ -1,4 +1,10 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -20,7 +26,7 @@ import { CommonModule } from '@angular/common';
       </div>
 
       <div class="alt">
-        <a routerLink="/tax-exemption">Start Over</a>
+        <a routerLink="/tax-exemption" (click)="resetData()">Start Over</a>
         <a routerLink="/">Return Home</a>
       </div>
     </div>
@@ -33,6 +39,12 @@ export class SbtccSidenavComponent implements OnChanges {
   @Input()
   set currentLocation(value: number | null) {
     this.location = value ?? 0;
+  }
+
+  @Output() resetDataEvent = new EventEmitter<void>();
+
+  resetData(): void {
+    this.resetDataEvent.emit();
   }
 
   ngOnChanges(): void {
