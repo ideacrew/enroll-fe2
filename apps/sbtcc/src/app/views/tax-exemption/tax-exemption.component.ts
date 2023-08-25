@@ -31,10 +31,10 @@ import * as DataAction from '../../+state/data.actions';
       (keyup.enter)="nextStep()"
       (change)="taxExemptChanged($event)"
     >
-      <mat-radio-button class="radio" value="true">
+      <mat-radio-button class="radio" [value]="true">
         Yes, I'm a tax-exempt employer
       </mat-radio-button>
-      <mat-radio-button class="radio" value="false">
+      <mat-radio-button class="radio" [value]="false">
         No, I'm not a tax-exempt employer
       </mat-radio-button>
     </mat-radio-group>
@@ -74,8 +74,6 @@ export class TaxExemptionComponent {
   }
 
   taxExemptChanged(event: MatRadioChange): void {
-    this.store.dispatch(
-      DataAction.taxExempt({ taxExempt: event.value === 'true' }),
-    );
+    this.store.dispatch(DataAction.taxExempt({ taxExempt: event.value }));
   }
 }

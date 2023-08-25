@@ -86,6 +86,7 @@ const reducer = createReducer(
   on(DataActions.results, (state) => ({
     ...state,
     results:
+      (state.taxExempt ? 0 : 1) *
       ((state.wages || 0) * 0.35 - (state.premiums || 0) * 0.35) *
       (state.employeeCount || 0),
   })),
