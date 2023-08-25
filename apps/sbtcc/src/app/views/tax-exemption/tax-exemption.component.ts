@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -49,7 +49,7 @@ import * as DataAction from '../../+state/data.actions';
     </button>
   `,
 })
-export class TaxExemptionComponent implements OnInit {
+export class TaxExemptionComponent {
   dataState$: Observable<DataState>;
   taxExempt$: Observable<boolean | null>;
 
@@ -66,9 +66,7 @@ export class TaxExemptionComponent implements OnInit {
     // Enable the button when the taxExempt$ observable emits a value other than null
     this.taxExempt$.subscribe((data) => (this.buttonDisabled = data === null))
       .unsubscribe;
-  }
 
-  ngOnInit(): void {
     this.store.dispatch(DataAction.location({ location: 1 }));
   }
 

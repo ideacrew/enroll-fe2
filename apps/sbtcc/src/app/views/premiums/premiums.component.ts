@@ -64,6 +64,7 @@ export class PremiumsComponent implements OnInit {
   ) {
     this.dataState$ = store.select('dataState');
     this.premiums$ = this.dataState$.pipe(map((state) => state.premiums));
+    this.store.dispatch(DataAction.location({ location: 4 }));
   }
 
   ngOnInit(): void {
@@ -72,8 +73,6 @@ export class PremiumsComponent implements OnInit {
         this.premiumsField.setValue(value.toString());
       }
     }).unsubscribe;
-
-    this.store.dispatch(DataAction.location({ location: 4 }));
 
     // TODO: Fix this
     // this.premiumsField.valueChanges.subscribe((value) =>

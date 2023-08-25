@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { DataState } from '../../+state/data.reducer';
 import * as DataAction from '../../+state/data.actions';
-import { Observable, Subscription, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { UtilService } from '../../services/util.service';
 
@@ -43,13 +43,11 @@ import { UtilService } from '../../services/util.service';
   `,
   styleUrls: ['employees.component.scss'],
 })
-export class EmployeesComponent implements OnInit, OnDestroy {
+export class EmployeesComponent implements OnInit {
   dataState$: Observable<DataState>;
   employeeCount$: Observable<number | null>;
 
   countField = new FormControl();
-
-  private employeeCountSubscription!: Subscription;
 
   constructor(
     private router: Router,
@@ -60,21 +58,16 @@ export class EmployeesComponent implements OnInit, OnDestroy {
     this.employeeCount$ = this.dataState$.pipe(
       map((state) => state.employeeCount),
     );
+    this.store.dispatch(DataAction.location({ location: 2 }));
   }
 
   ngOnInit(): void {
-    this.employeeCountSubscription = this.employeeCount$.subscribe((value) => {
+    this.employeeCount$.subscribe((value) => {
       this.countField.setValue(value);
-    });
-
-    this.store.dispatch(DataAction.location({ location: 2 }));
+    }).unsubscribe;
 
     // Focus on the input field
     this.util.focusElement('input');
-  }
-
-  ngOnDestroy() {
-    this.employeeCountSubscription.unsubscribe();
   }
 
   nextStep(): void {

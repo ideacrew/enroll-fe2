@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { DataState } from '../../+state/data.reducer';
 import * as DataAction from '../../+state/data.actions';
-import { Observable, Subscription, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { UtilService } from '../../services/util.service';
 
@@ -47,12 +47,11 @@ import { UtilService } from '../../services/util.service';
   `,
   styleUrls: ['./wages.component.scss'],
 })
-export class WagesComponent implements OnInit, OnDestroy {
+export class WagesComponent implements OnInit {
   dataState$: Observable<DataState>;
   wages$: Observable<number | null>;
 
   wagesField = new FormControl('');
-  private wagesSubscription!: Subscription;
 
   constructor(
     private router: Router,
@@ -61,25 +60,20 @@ export class WagesComponent implements OnInit, OnDestroy {
   ) {
     this.dataState$ = store.select('dataState');
     this.wages$ = this.dataState$.pipe(map((state) => state.wages));
+    this.store.dispatch(DataAction.location({ location: 3 }));
   }
 
   ngOnInit(): void {
-    this.wagesSubscription = this.wages$.subscribe((value) => {
+    this.wages$.subscribe((value) => {
       if (value !== null) {
         this.wagesField.setValue(value.toString());
       }
-    });
-
-    this.store.dispatch(DataAction.location({ location: 3 }));
+    }).unsubscribe;
 
     // TODO: Fix this
     // this.countField.valueChanges.subscribe((value) => console.log('changed'));
 
     this.util.focusElement('input');
-  }
-
-  ngOnDestroy() {
-    this.wagesSubscription.unsubscribe();
   }
 
   nextStep() {
@@ -91,9 +85,7 @@ export class WagesComponent implements OnInit, OnDestroy {
     this.router.navigate(['/employees']);
   }
 
-  updateWages(value: number | string): void {
-    this.store.dispatch(
-      DataAction.wages({ wages: value as unknown as number }),
-    );
+  updateWages(value: number): void {
+    this.store.dispatch(DataAction.wages({ wages: value }));
   }
 }

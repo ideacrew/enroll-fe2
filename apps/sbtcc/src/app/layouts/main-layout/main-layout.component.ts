@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SbtccHeaderComponent } from '@enroll/sbtcc/header';
 import { SbtccFooterComponent } from '@enroll/sbtcc/footer';
@@ -38,14 +43,24 @@ import { CommonModule } from '@angular/common';
     </div>
   `,
 })
-export class MainLayoutComponent {
+export class MainLayoutComponent implements OnInit, AfterViewInit {
   title = 'sbtcc App';
 
   dataState$: Observable<DataState>;
-  testing: Observable<number | string>;
+  testing = new Observable<number | string>();
 
-  constructor(private store: Store<{ dataState: DataState }>) {
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private store: Store<{ dataState: DataState }>,
+  ) {
     this.dataState$ = this.store.select('dataState');
+  }
+
+  ngOnInit(): void {
     this.testing = this.dataState$.pipe(map((state) => state.location));
+  }
+
+  ngAfterViewInit(): void {
+    this.cdr.detectChanges();
   }
 }
