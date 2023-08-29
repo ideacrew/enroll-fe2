@@ -25,6 +25,10 @@ h3 {
   font-weight: 700;
   line-height: 27px;
   margin-bottom: 10px;
+
+  @media (max-width: 660px) {
+    text-align: center;
+  }
 }
 
 a {
