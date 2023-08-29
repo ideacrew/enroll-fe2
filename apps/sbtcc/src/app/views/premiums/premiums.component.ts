@@ -31,6 +31,8 @@ import { TranslocoModule } from '@ngneat/transloco';
           <span matPrefix>$</span>
           <input
             matInput
+            type="number"
+            inputmode="numeric"
             [formControl]="premiumsField"
             (keyup.enter)="nextStep()"
           />

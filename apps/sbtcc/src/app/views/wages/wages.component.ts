@@ -32,6 +32,7 @@ import { TranslocoModule } from '@ngneat/transloco';
           <input
             matInput
             type="number"
+            inputmode="numeric"
             [formControl]="wagesField"
             (keyup.enter)="nextStep()"
           />
