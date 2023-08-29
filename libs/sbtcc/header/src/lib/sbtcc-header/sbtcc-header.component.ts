@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule],
   template: `
     <div>
-      <img src="covermelogo.svg" alt="Cover Me Logo" />
+      <img src="covermelogo.svg" alt="Cover Me Logo" width="208" height="41" />
 
       <span class="span"></span>
 
