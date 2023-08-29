@@ -8,43 +8,47 @@ import * as DataAction from '../../+state/data.actions';
 import { Observable, map } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { UtilService } from '../../services/util.service';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'sbtcc-employees',
   standalone: true,
-  imports: [MatButtonModule, MatInputModule, ReactiveFormsModule],
+  imports: [
+    MatButtonModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    TranslocoModule,
+  ],
   template: `
-    <h2>2. How many of your employees work 40 hours or more a week?</h2>
+    <ng-container *transloco="let t; read: 'employees'">
+      <h2>2. {{ t('question') }}</h2>
 
-    <p>
-      Full-time employees are employees who worked or who you expect to work the
-      equivalent of 40 hours a week for 52 weeks (for a total of 2,080 hours
-      each).
-    </p>
+      <p>{{ t('content') }}</p>
 
-    <div class="form-area">
-      <mat-label>Number of full-time employees</mat-label>
-      <mat-form-field appearance="outline" floatLabel="always">
-        <input
-          matInput
-          type="number"
-          [formControl]="countField"
-          (keyup.enter)="nextStep()"
-        />
-      </mat-form-field>
-    </div>
+      <div class="form-area">
+        <mat-label>{{ t('label') }}</mat-label>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <input
+            matInput
+            type="number"
+            [formControl]="countField"
+            (keyup.enter)="nextStep()"
+          />
+        </mat-form-field>
+      </div>
 
-    <button mat-raised-button color="basic" (click)="previousStep()">
-      Previous Step
-    </button>
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="countField.value === null || countField.value === ''"
-      (click)="nextStep()"
-    >
-      Continue to Next Step
-    </button>
+      <button mat-raised-button color="basic" (click)="previousStep()">
+        {{ t('previous') }}
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="countField.value === null || countField.value === ''"
+        (click)="nextStep()"
+      >
+        {{ t('next') }}
+      </button>
+    </ng-container>
   `,
   styleUrls: ['employees.component.scss'],
 })

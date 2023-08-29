@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { DataState } from '../../+state/data.reducer';
 import * as DataAction from '../../+state/data.actions';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'sbtcc-results',
@@ -19,50 +20,52 @@ import * as DataAction from '../../+state/data.actions';
     MatFormFieldModule,
     FormsModule,
     MatButtonModule,
+    TranslocoModule,
   ],
   template: `
-    <h2>Results from Responses</h2>
+    <ng-container *transloco="let t; read: 'results'">
+      <h2>{{ t('header') }}</h2>
 
-    <ol>
-      <li>
-        <strong>Are you a tax-exempt employer?</strong>
-        <span *ngIf="(this.taxExempt$ | async) === true; else nope">
-          Yes, I'm a tax-exempt employer
-        </span>
-        <ng-template #nope>
-          <span> No, I'm not a tax-exempt employer</span>
-        </ng-template>
-      </li>
+      <ol>
+        <li>
+          <strong>{{ t('result1.question') }}</strong>
+          <span *ngIf="(this.taxExempt$ | async) === true; else nope">
+            {{ t('result1.yes') }}
+          </span>
+          <ng-template #nope>
+            <span> {{ t('result1.no') }}</span>
+          </ng-template>
+        </li>
 
-      <li>
-        <strong>How many employees work more than 40 hours a week</strong>
-        <span>{{ this.employeeCount$ | async }}</span>
-      </li>
+        <li>
+          <strong>{{ t('result2') }}</strong>
+          <span>{{ this.employeeCount$ | async }}</span>
+        </li>
 
-      <li>
-        <strong>
-          Total estimated employee wages for the applicable tax year?
-        </strong>
-        <span>$ {{ this.wages$ | async }}</span>
-      </li>
+        <li>
+          <strong>
+            {{ t('result3') }}
+          </strong>
+          <span>$ {{ this.wages$ | async }}</span>
+        </li>
 
-      <li>
-        <strong>
-          Total estimated amount paid toward premiums during the applicable
-          year?
-        </strong>
-        <span>$ {{ this.premiums$ | async }}</span>
-      </li>
-    </ol>
+        <li>
+          <strong>
+            {{ t('result4') }}
+          </strong>
+          <span>$ {{ this.premiums$ | async }}</span>
+        </li>
+      </ol>
 
-    <h3>Estimated annual tax-credit: $ {{ this.results$ | async }}</h3>
+      <h3>{{ t('total') }}: $ {{ this.results$ | async }}</h3>
 
-    <button mat-raised-button color="basic" (click)="previousStep()">
-      Previous Step
-    </button>
-    <button mat-raised-button color="primary" (click)="nextStep()">
-      Start Over
-    </button>
+      <button mat-raised-button color="basic" (click)="previousStep()">
+        {{ t('previous') }}
+      </button>
+      <button mat-raised-button color="primary" (click)="nextStep()">
+        {{ t('next') }}
+      </button>
+    </ng-container>
   `,
   styleUrls: ['./results.component.scss'],
 })

@@ -1,0 +1,60 @@
+{
+  "app-name": "Calculadora de Crédito Tributario para Pequeñas Empresas",
+  "start": {
+    "content": "Utiliza nuestra calculadora para averiguar si tu negocio podría calificar para un crédito tributario y, de ser así, qué cantidad de ayuda financiera podrías esperar. Ten en cuenta que los resultados de la calculadora son simplemente una estimación. Por favor, consulta a tu asesor fiscal para obtener más ayuda.",
+    "next": "Comenzar la Calculadora"
+  },
+  "tax-exempt": {
+    "question": "¿Tu negocio está exento de impuestos?",
+    "content": "El crédito es reembolsable para empleadores exentos de impuestos, pero está limitado a la cantidad de impuestos sobre la nómina retenidos del empleador exento de impuestos durante el año calendario.",
+    "yes": "Sí, soy un empleador exento de impuestos",
+    "no": "No, no soy un empleador exento de impuestos",
+    "next": "{{employees.next}}"
+  },
+  "employees": {
+    "question": "¿Cuántos de tus empleados trabajan 40 horas o más a la semana?",
+    "content": "Los empleados a tiempo completo son aquellos que trabajaron o se espera que trabajen el equivalente a 40 horas a la semana durante 52 semanas (para un total de 2,080 horas cada una).",
+    "label": "Número de empleados a tiempo completo",
+    "next": "Continuar al Siguiente Paso",
+    "previous": "Paso Anterior"
+  },
+  "wages": {
+    "question": "¿Cuál es el total estimado de salarios de tus empleados para el año fiscal correspondiente?",
+    "content": "Los salarios totales que pagaste o esperas pagar tanto para empleados a tiempo completo como a tiempo parcial deben incluir todos los salarios sujetos a retención de impuestos de Seguro Social y Medicare (incluso si los salarios anuales de un empleado son mayores que el límite de la base salarial).",
+    "label": "Salarios totales en $USD",
+    "next": "{{employees.next}}",
+    "previous": "{{employees.previous}}"
+  },
+  "premiums": {
+    "question": "¿Cuál es el monto total estimado que pagarás por primas durante el año correspondiente?",
+    "content": "Los salarios totales que pagaste o esperas pagar tanto para empleados a tiempo completo como a tiempo parcial deben incluir todos los salarios sujetos a retención de impuestos de Seguro Social y Medicare (incluso si los salarios anuales de un empleado son mayores que el límite de la base salarial).",
+    "label": "Contribución total en $USD",
+    "next": "{{employees.next}}",
+    "previous": "{{employees.previous}}"
+  },
+  "results": {
+    "header": "Resultados de las Respuestas",
+    "result1": {
+      "question": "¿Eres un empleador exento de impuestos?",
+      "yes": "Sí, soy un empleador exento de impuestos",
+      "no": "No, no soy un empleador exento de impuestos"
+    },
+    "result2": "¿Cuántos empleados trabajan más de 40 horas a la semana?",
+    "result3": "¿Total estimado de salarios de los empleados para el año fiscal correspondiente?",
+    "result4": "¿Total estimado pagado por primas durante el año correspondiente?",
+    "total": "Crédito tributario anual estimado",
+    "next": "Comenzar de Nuevo",
+    "previous": "{{employees.previous}}"
+  },
+  "progress": {
+    "header": "Progreso",
+    "start": "Comenzar",
+    "tax-exempt": "Exención de Impuestos",
+    "employees": "Empleados de Tiempo Completo",
+    "wages": "Salarios de Empleados",
+    "premiums": "Primas",
+    "results": "Resultados",
+    "start-over": "Empezar de Nuevo",
+    "home": "Volver a Inicio"
+  }
+}

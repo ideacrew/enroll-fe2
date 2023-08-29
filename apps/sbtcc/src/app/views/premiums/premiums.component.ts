@@ -8,47 +8,47 @@ import * as DataAction from '../../+state/data.actions';
 import { Observable, map } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { UtilService } from '../../services/util.service';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'sbtcc-premiums',
   standalone: true,
-  imports: [MatButtonModule, MatInputModule, ReactiveFormsModule],
+  imports: [
+    MatButtonModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    TranslocoModule,
+  ],
   template: `
-    <h2>
-      4. What is the total estimated amount you will pay toward premiums during
-      the applicable year?
-    </h2>
+    <ng-container *transloco="let t; read: 'premiums'">
+      <h2>4. {{ t('question') }}</h2>
 
-    <p>
-      The total wages you paid or expect to pay for both full-time and part-time
-      employees should include all wages subject to Social Security and Medicare
-      tax withholding (even if an employee's yearly wages are more than the wage
-      base limit).
-    </p>
+      <p>{{ t('content') }}</p>
 
-    <div class="form-area">
-      <mat-label>Total contribution in $USD</mat-label>
-      <mat-form-field appearance="outline" floatLabel="always">
-        <span matPrefix>$</span>
-        <input
-          matInput
-          [formControl]="premiumsField"
-          (keyup.enter)="nextStep()"
-        />
-      </mat-form-field>
-    </div>
+      <div class="form-area">
+        <mat-label>{{ t('label') }}</mat-label>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <span matPrefix>$</span>
+          <input
+            matInput
+            [formControl]="premiumsField"
+            (keyup.enter)="nextStep()"
+          />
+        </mat-form-field>
+      </div>
 
-    <button mat-raised-button color="basic" (click)="previousStep()">
-      Previous Step
-    </button>
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="premiumsField.value === null || premiumsField.value === ''"
-      (click)="nextStep()"
-    >
-      Continue to Next Step
-    </button>
+      <button mat-raised-button color="basic" (click)="previousStep()">
+        {{ t('previous') }}
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="premiumsField.value === null || premiumsField.value === ''"
+        (click)="nextStep()"
+      >
+        {{ t('next') }}
+      </button>
+    </ng-container>
   `,
   styleUrls: ['./premiums.component.scss'],
 })

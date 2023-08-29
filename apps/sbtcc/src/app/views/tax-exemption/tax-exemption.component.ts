@@ -8,45 +8,44 @@ import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { DataState } from '../../+state/data.reducer';
 import * as DataAction from '../../+state/data.actions';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'sbtcc-tax-exemption',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatRadioModule],
+  imports: [CommonModule, MatButtonModule, MatRadioModule, TranslocoModule],
 
   styleUrls: ['tax-exemption.component.scss'],
   template: `
-    <h2>1. Are you a tax-exempt employer?</h2>
+    <ng-container *transloco="let t; read: 'tax-exempt'">
+      <h2>1. {{ t('question') }}</h2>
 
-    <p>
-      The credit is refundable for tax-exempt employers, but is limited to the
-      amount of the tax-exempt employer's payroll taxes withheld during the
-      calendar year.
-    </p>
+      <p>{{ t('content') }}</p>
 
-    <mat-radio-group
-      class="questions"
-      name="tax-exempt-question"
-      [value]="taxExempt$ | async"
-      (keyup.enter)="nextStep()"
-      (change)="taxExemptChanged($event)"
-    >
-      <mat-radio-button class="radio" [value]="true">
-        Yes, I'm a tax-exempt employer
-      </mat-radio-button>
-      <mat-radio-button class="radio" [value]="false">
-        No, I'm not a tax-exempt employer
-      </mat-radio-button>
-    </mat-radio-group>
+      <mat-radio-group
+        class="questions"
+        name="tax-exempt-question"
+        [value]="taxExempt$ | async"
+        (keyup.enter)="nextStep()"
+        (change)="taxExemptChanged($event)"
+      >
+        <mat-radio-button class="radio" [value]="true">
+          {{ t('yes') }}
+        </mat-radio-button>
+        <mat-radio-button class="radio" [value]="false">
+          {{ t('no') }}
+        </mat-radio-button>
+      </mat-radio-group>
 
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="buttonDisabled"
-      (click)="nextStep()"
-    >
-      Continue to Next Step
-    </button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="buttonDisabled"
+        (click)="nextStep()"
+      >
+        {{ t('next') }}
+      </button>
+    </ng-container>
   `,
 })
 export class TaxExemptionComponent {

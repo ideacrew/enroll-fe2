@@ -1,0 +1,60 @@
+{
+  "app-name": "Small Business Tax Credit Calculator",
+  "start": {
+    "content": "Use our calculator to find out if your business might qualify for a tax credit, and if so, what amount of financial help you may expect. Keep in mind that results from the calculator are simply an estimate. Please consult your tax adviser for further assistance.",
+    "next": "Begin the Calculator"
+  },
+  "tax-exempt": {
+    "question": "Is your business tax-exempt?",
+    "content": "The credit is refundable for tax-exempt employers, but is limited to the amount of the tax-exempt employer's payroll taxes withheld during the calendar year.",
+    "yes": "Yes, I'm a tax-exempt employer",
+    "no": "No, I'm not a tax-exempt employer",
+    "next": "{{employees.next}}"
+  },
+  "employees": {
+    "question": "How many of your employees work 40 hours or more a week?",
+    "content": "Full-time employees are employees who worked or who you expect to work the equivalent of 40 hours a week for 52 weeks (for a total of 2,080 hours each).",
+    "label": "Number of full-time employees",
+    "next": "Continue to Next Step",
+    "previous": "Previous Step"
+  },
+  "wages": {
+    "question": "What are your total estimated employee wages for the applicable tax year?",
+    "content": "The total wages you paid or expect to pay for both full-time and part-time employees should include all wages subject to Social Security and Medicare tax withholding (even if an employee's yearly wages are more than the wage base limit).",
+    "label": "Total wages in $USD",
+    "next": "{{employees.next}}",
+    "previous": "{{employees.previous}}"
+  },
+  "premiums": {
+    "question": "What is the total estimated amount you will pay toward premiums during the applicable year?",
+    "content": "The total wages you paid or expect to pay for both full-time and part-time employees should include all wages subject to Social Security and Medicare tax withholding (even if an employee's yearly wages are more than the wage base limit).",
+    "label": "Total contribution in $USD",
+    "next": "{{employees.next}}",
+    "previous": "{{employees.previous}}"
+  },
+  "results": {
+    "header": "Results from Responses",
+    "result1": {
+      "question": "Are you a tax-exempt employer?",
+      "yes": "Yes, I'm a tax-exempt employer",
+      "no": "No, I'm not a tax-exempt employer"
+    },
+    "result2": "How many employees work more than 40 hours a week?",
+    "result3": "Total estimated employee wages for the applicable tax year?",
+    "result4": "Total estimated amount paid toward premiums during the applicable year?",
+    "total": "Estimated annual tax-credit",
+    "next": "Start Over",
+    "previous": "{{employees.previous}}"
+  },
+  "progress": {
+    "header": "Progress",
+    "start": "Start",
+    "tax-exempt": "Tax-exemption",
+    "employees": "Full-time Employees",
+    "wages": "Employee Wages",
+    "premiums": "Premiums",
+    "results": "Results",
+    "start-over": "Start Over",
+    "home": "Return Home"
+  }
+}
