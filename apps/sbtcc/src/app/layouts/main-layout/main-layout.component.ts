@@ -13,17 +13,20 @@ import { Observable, map } from 'rxjs';
 import { DataState } from '../../+state/data.reducer';
 import { CommonModule } from '@angular/common';
 import * as DataAction from '../../+state/data.actions';
-
+import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoService } from '@ngneat/transloco';
 @Component({
   selector: 'sbtcc-main-layout',
   standalone: true,
   imports: [
     CommonModule,
     RouterModule,
+    TranslocoModule,
     SbtccHeaderComponent,
     SbtccFooterComponent,
     SbtccSidenavComponent,
   ],
+  providers: [TranslocoService],
   styleUrls: ['./main-layout.component.scss'],
   template: `
     <div class="wrapper">
@@ -37,13 +40,16 @@ import * as DataAction from '../../+state/data.actions';
           />
 
           <main>
-            <h1>Small Business Tax Credit Calculator</h1>
+            <h1>{{ 'app-name' | transloco }}</h1>
+
+            <button (click)="switchLanguage('es')">Espano</button>
+
             <router-outlet />
           </main>
         </div>
       </div>
 
-      <sbtcc-footer />
+      <sbtcc-footer (switchLanguageEvent)="switchLanguage($event)" />
     </div>
   `,
 })
@@ -55,6 +61,7 @@ export class MainLayoutComponent implements OnInit, AfterViewInit {
 
   constructor(
     private cdr: ChangeDetectorRef,
+    private transloco: TranslocoService,
     private store: Store<{ dataState: DataState }>,
   ) {
     this.dataState$ = this.store.select('dataState');
@@ -70,5 +77,9 @@ export class MainLayoutComponent implements OnInit, AfterViewInit {
 
   resetData(): void {
     this.store.dispatch(DataAction.reset());
+  }
+
+  switchLanguage(lang: string): void {
+    this.transloco.setActiveLang(lang);
   }
 }

@@ -11,6 +11,9 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 // import * as fromData from './+state/data.reducer';
 // import { DataEffects } from './+state/data.effects';
 import { dataReducer } from './+state/data.reducer';
+import { provideHttpClient } from '@angular/common/http';
+import { TranslocoHttpLoader } from './transloco-loader';
+import { provideTransloco } from '@ngneat/transloco';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,5 +23,16 @@ export const appConfig: ApplicationConfig = {
     // provideState(fromData.DATA_FEATURE_KEY, fromData.dataReducer),
     // provideEffects(DataEffects),
     provideAnimations(),
+    provideHttpClient(),
+    provideTransloco({
+      config: {
+        availableLangs: ['en', 'es'],
+        defaultLang: 'en',
+        // Remove this option if your application doesn't support changing language in runtime.
+        reRenderOnLangChange: true,
+        prodMode: !isDevMode(),
+      },
+      loader: TranslocoHttpLoader,
+    }),
   ],
 };

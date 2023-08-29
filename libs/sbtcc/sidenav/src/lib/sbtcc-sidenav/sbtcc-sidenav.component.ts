@@ -7,29 +7,34 @@ import {
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'sbtcc-sidenav',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslocoModule],
   template: `
-    <div>
-      <div class="main">
-        <h3>Progress</h3>
+    <ng-container *transloco="let t; read: 'progress'">
+      <div>
+        <div class="main">
+          <h3>{{ t('header') }}</h3>
 
-        <span>Start</span>
-        <span>Tax-exemption</span>
-        <span>Full-time Employees</span>
-        <span>Employee Wages</span>
-        <span>Premiums</span>
-        <span>Results</span>
-      </div>
+          <span>{{ t('start') }}</span>
+          <span>{{ t('tax-exempt') }}</span>
+          <span>{{ t('employees') }}</span>
+          <span>{{ t('wages') }}</span>
+          <span>{{ t('premiums') }}</span>
+          <span>{{ t('results') }}</span>
+        </div>
 
-      <div class="alt">
-        <a routerLink="/tax-exemption" (click)="resetData()">Start Over</a>
-        <a routerLink="/" (click)="resetData()">Return Home</a>
+        <div class="alt">
+          <a routerLink="/tax-exemption" (click)="resetData()">
+            {{ t('start-over') }}
+          </a>
+          <a routerLink="/" (click)="resetData()">{{ t('home') }}</a>
+        </div>
       </div>
-    </div>
+    </ng-container>
   `,
   styleUrls: ['./sbtcc-sidenav.component.scss'],
 })
@@ -48,10 +53,10 @@ export class SbtccSidenavComponent implements OnChanges {
   }
 
   ngOnChanges(): void {
-    this.checkLocation(this.location as number);
+    this.updateLocation(this.location as number);
   }
 
-  private checkLocation(location: number): void {
+  private updateLocation(location: number): void {
     const spans = document.querySelectorAll('.main span');
 
     if (spans.length) {
