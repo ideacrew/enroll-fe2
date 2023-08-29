@@ -50,6 +50,10 @@
 
 .top {
   grid-template-columns: repeat(2, max-content) 1fr;
+
+  .active {
+    text-decoration: underline;
+  }
 }
 
 .bottom {
@@ -59,8 +63,11 @@
 
 a {
   color: #fff;
-  text-decoration: none;
   cursor: pointer;
+
+  &[href^='tel:'] {
+    text-decoration: none;
+  }
 }
 
 svg {

@@ -47,12 +47,16 @@ import { TranslocoService } from '@ngneat/transloco';
         </div>
       </div>
 
-      <sbtcc-footer (switchLanguageEvent)="switchLanguage($event)" />
+      <sbtcc-footer
+        (switchLanguageEvent)="switchLanguage($event)"
+        [currentLanguage]="currentLanguage"
+      />
     </div>
   `,
 })
 export class MainLayoutComponent implements OnInit, AfterViewInit {
   title = 'sbtcc App';
+  currentLanguage = 'en';
 
   dataState$: Observable<DataState>;
   currentLocation = new Observable<number>();
@@ -79,5 +83,10 @@ export class MainLayoutComponent implements OnInit, AfterViewInit {
 
   switchLanguage(lang: string): void {
     this.transloco.setActiveLang(lang);
+    this.currentLanguage = this.getCurrentLanguage();
+  }
+
+  getCurrentLanguage(): string {
+    return this.transloco.getActiveLang();
   }
 }

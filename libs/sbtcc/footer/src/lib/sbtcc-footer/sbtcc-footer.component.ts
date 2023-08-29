@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -22,8 +22,16 @@ import { RouterModule } from '@angular/router';
           />
         </svg>
 
-        <a (click)="switchLanguage('en')">English</a>
-        <a (click)="switchLanguage('es')">Español</a>
+        <a
+          (click)="switchLanguage('en')"
+          [ngClass]="{ active: language === 'en' }"
+          >English</a
+        >
+        <a
+          (click)="switchLanguage('es')"
+          [ngClass]="{ active: language === 'es' }"
+          >Español</a
+        >
       </div>
 
       <div class="bottom">
@@ -41,6 +49,12 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./sbtcc-footer.component.scss'],
 })
 export class SbtccFooterComponent {
+  language = 'en';
+
+  @Input()
+  set currentLanguage(value: string) {
+    this.language = value ?? 'en';
+  }
   @Output() switchLanguageEvent = new EventEmitter<string>();
 
   switchLanguage(lang: string): void {
