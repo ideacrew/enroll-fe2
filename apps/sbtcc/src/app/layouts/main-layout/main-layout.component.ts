@@ -42,8 +42,6 @@ import { TranslocoService } from '@ngneat/transloco';
           <main>
             <h1>{{ 'app-name' | transloco }}</h1>
 
-            <button (click)="switchLanguage('es')">Espano</button>
-
             <router-outlet />
           </main>
         </div>
