@@ -23,6 +23,14 @@
   max-width: 1172px;
   width: 100%;
   padding: 0 16px;
+
+  @media (max-width: 660px) {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: auto;
+    margin: 16px 0;
+  }
 }
 
 h1 {
