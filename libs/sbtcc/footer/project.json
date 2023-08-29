@@ -29,41 +29,6 @@
           "libs/sbtcc/footer/**/*.html"
         ]
       }
-    },
-    "storybook": {
-      "executor": "@storybook/angular:start-storybook",
-      "options": {
-        "port": 4400,
-        "configDir": "libs/sbtcc/footer/.storybook",
-        "browserTarget": "sbtcc-footer:build-storybook",
-        "compodoc": false
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      }
-    },
-    "build-storybook": {
-      "executor": "@storybook/angular:build-storybook",
-      "outputs": ["{options.outputDir}"],
-      "options": {
-        "outputDir": "dist/storybook/sbtcc-footer",
-        "configDir": "libs/sbtcc/footer/.storybook",
-        "browserTarget": "sbtcc-footer:build-storybook",
-        "compodoc": false
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      }
-    },
-    "test-storybook": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "test-storybook -c libs/sbtcc/footer/.storybook --url=http://localhost:4400"
-      }
     }
   }
 }
