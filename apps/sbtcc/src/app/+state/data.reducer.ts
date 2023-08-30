@@ -54,8 +54,16 @@ const reducer = createReducer(
     error: error.toString(),
   })),
 
-  on(DataActions.reset, () => ({
-    ...initialDataState,
+  // on(DataActions.reset, () => ({
+  //   ...initialDataState,
+  // })),
+  on(DataActions.reset, (state) => ({
+    ...state,
+    taxExempt: null,
+    employeeCount: null,
+    wages: null,
+    premiums: null,
+    results: 0,
   })),
 
   on(DataActions.location, (state, { location }) => ({
