@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { SbtccHeaderComponent } from '@enroll/sbtcc/header';
 import { SbtccFooterComponent } from '@enroll/sbtcc/footer';
 
@@ -9,7 +9,7 @@ import { SbtccFooterComponent } from '@enroll/sbtcc/footer';
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule,
+    RouterOutlet,
     SbtccHeaderComponent,
     SbtccFooterComponent,
   ],

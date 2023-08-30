@@ -4,7 +4,7 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { SbtccHeaderComponent } from '@enroll/sbtcc/header';
 import { SbtccFooterComponent } from '@enroll/sbtcc/footer';
 import { SbtccSidenavComponent } from '@enroll/sbtcc/sidenav';
@@ -20,7 +20,7 @@ import { TranslocoService } from '@ngneat/transloco';
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule,
+    RouterOutlet,
     TranslocoModule,
     SbtccHeaderComponent,
     SbtccFooterComponent,

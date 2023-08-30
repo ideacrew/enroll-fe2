@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'sbtcc-header',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterLink],
   template: `
     <div>
       <img src="covermelogo.svg" alt="Cover Me Logo" width="208" height="41" />

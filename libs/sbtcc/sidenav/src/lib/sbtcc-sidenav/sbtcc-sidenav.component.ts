@@ -5,14 +5,14 @@ import {
   OnChanges,
   Output,
 } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'sbtcc-sidenav',
   standalone: true,
-  imports: [CommonModule, RouterModule, TranslocoModule],
+  imports: [CommonModule, RouterLink, TranslocoModule],
   template: `
     <ng-container *transloco="let t; read: 'progress'">
       <div>
