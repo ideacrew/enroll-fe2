@@ -1,8 +1,10 @@
 import {
+  AfterContentChecked,
   Component,
   EventEmitter,
   Input,
   OnChanges,
+  OnInit,
   Output,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -38,7 +40,7 @@ import { TranslocoModule } from '@ngneat/transloco';
   `,
   styleUrls: ['./sbtcc-sidenav.component.scss'],
 })
-export class SbtccSidenavComponent implements OnChanges {
+export class SbtccSidenavComponent implements OnChanges, AfterContentChecked {
   location: number | null = null;
 
   @Input()
@@ -50,6 +52,10 @@ export class SbtccSidenavComponent implements OnChanges {
 
   resetData(): void {
     this.resetDataEvent.emit();
+  }
+
+  ngAfterContentChecked(): void {
+    this.updateLocation(this.location as number);
   }
 
   ngOnChanges(): void {
