@@ -27,7 +27,7 @@ import { TranslocoModule } from '@ngneat/transloco';
           <span>{{ t('results') }}</span>
         </div>
 
-        <div class="alt">
+        <div class="alt" *ngIf="this.location !== 0">
           <a routerLink="/tax-exemption" (click)="resetData()">
             {{ t('start-over') }}
           </a>
