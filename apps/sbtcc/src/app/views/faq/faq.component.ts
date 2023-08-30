@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'sbtcc-faq',
@@ -20,6 +21,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatNativeDateModule,
   ],
   template: `
+    <button mat-stroked-button color="primary" (click)="back()">Back</button>
+
     <mat-accordion multi hideToggle displayMode="flat">
       <mat-expansion-panel expanded>
         <mat-expansion-panel-header>
@@ -120,6 +123,10 @@ import { MatNativeDateModule } from '@angular/material/core';
         width: 100%;
       }
 
+      button {
+        margin-bottom: 16px;
+      }
+
       .mat-expansion-panel-header-title {
         font-size: 18px;
         font-weight: 700;
@@ -129,4 +136,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 })
 export class FaqComponent {
   @ViewChild(MatAccordion) accordion: MatAccordion = new MatAccordion();
+
+  constructor(private location: Location) {}
+
+  back() {
+    this.location.back();
+  }
 }
