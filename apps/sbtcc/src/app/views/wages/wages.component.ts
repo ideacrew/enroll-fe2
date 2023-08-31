@@ -9,6 +9,7 @@ import { Observable, map } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { UtilService } from '../../services/util.service';
 import { TranslocoDirective } from '@ngneat/transloco';
+import { InputMaskModule } from '@ngneat/input-mask';
 
 @Component({
   selector: 'sbtcc-wages',
@@ -18,6 +19,7 @@ import { TranslocoDirective } from '@ngneat/transloco';
     MatInputModule,
     ReactiveFormsModule,
     TranslocoDirective,
+    InputMaskModule,
   ],
   template: `
     <ng-container *transloco="let t; read: 'wages'">
@@ -31,8 +33,7 @@ import { TranslocoDirective } from '@ngneat/transloco';
           <span matPrefix>$</span>
           <input
             matInput
-            type="number"
-            inputmode="numeric"
+            [inputMask]="util.currencyInputMask"
             [formControl]="wagesField"
             (keyup.enter)="nextStep()"
           />
@@ -62,7 +63,7 @@ export class WagesComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private util: UtilService,
+    public util: UtilService,
     private store: Store<{ dataState: DataState }>,
   ) {
     this.dataState$ = store.select('dataState');
@@ -81,8 +82,9 @@ export class WagesComponent implements OnInit {
         this.wagesField.setValue(count, { emitEvent: false });
       }).unsubscribe;
 
-    this.wagesField.valueChanges.subscribe((value: number) => {
-      this.store.dispatch(DataAction.wages({ wages: value }));
+    this.wagesField.valueChanges.subscribe((value: string) => {
+      const formattedVal = this.util.formatCommaNumber(value);
+      this.store.dispatch(DataAction.wages({ wages: formattedVal }));
     }).unsubscribe;
 
     this.util.focusElement('input');

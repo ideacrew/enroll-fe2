@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { createMask } from '@ngneat/input-mask';
 
 @Injectable({
   providedIn: 'root',
@@ -20,5 +21,16 @@ export class UtilService {
         thisEl.focus();
       }
     }, delay);
+  }
+
+  currencyInputMask = createMask({
+    alias: 'numeric',
+    groupSeparator: ',',
+    digits: 0,
+    digitsOptional: false,
+  });
+
+  formatCommaNumber(value: string) {
+    return parseInt(value?.toString().replace(/,/g, '') || '0');
   }
 }

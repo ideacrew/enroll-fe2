@@ -47,18 +47,20 @@ import { TranslocoDirective } from '@ngneat/transloco';
           <strong>
             {{ t('result3') }}
           </strong>
-          <span>$ {{ this.wages$ | async }}</span>
+          <span>$ {{ (this.wages$ | async)?.toLocaleString() }}</span>
         </li>
 
         <li>
           <strong>
             {{ t('result4') }}
           </strong>
-          <span>$ {{ this.premiums$ | async }}</span>
+          <span>$ {{ (this.premiums$ | async)?.toLocaleString() }}</span>
         </li>
       </ol>
 
-      <h3>{{ t('total') }}: $ {{ this.results$ | async }}</h3>
+      <h3>
+        {{ t('total') }}: $ {{ (this.results$ | async)?.toLocaleString() }}
+      </h3>
 
       <button mat-raised-button color="basic" (click)="previousStep()">
         {{ t('previous') }}

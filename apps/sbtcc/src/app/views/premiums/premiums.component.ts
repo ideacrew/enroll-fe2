@@ -9,6 +9,7 @@ import { Observable, map } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { UtilService } from '../../services/util.service';
 import { TranslocoDirective } from '@ngneat/transloco';
+import { InputMaskModule } from '@ngneat/input-mask';
 
 @Component({
   selector: 'sbtcc-premiums',
@@ -18,6 +19,7 @@ import { TranslocoDirective } from '@ngneat/transloco';
     MatInputModule,
     ReactiveFormsModule,
     TranslocoDirective,
+    InputMaskModule,
   ],
   template: `
     <ng-container *transloco="let t; read: 'premiums'">
@@ -31,8 +33,7 @@ import { TranslocoDirective } from '@ngneat/transloco';
           <span matPrefix>$</span>
           <input
             matInput
-            type="number"
-            inputmode="numeric"
+            [inputMask]="util.currencyInputMask"
             [formControl]="premiumsField"
             (keyup.enter)="nextStep()"
           />
@@ -62,7 +63,7 @@ export class PremiumsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private util: UtilService,
+    public util: UtilService,
     private store: Store<{ dataState: DataState }>,
   ) {
     this.dataState$ = store.select('dataState');
@@ -81,8 +82,9 @@ export class PremiumsComponent implements OnInit {
         this.premiumsField.setValue(count, { emitEvent: false });
       }).unsubscribe;
 
-    this.premiumsField.valueChanges.subscribe((value: number) => {
-      this.store.dispatch(DataAction.premiums({ premiums: value }));
+    this.premiumsField.valueChanges.subscribe((value: string) => {
+      const formattedVal = this.util.formatCommaNumber(value);
+      this.store.dispatch(DataAction.premiums({ premiums: formattedVal }));
     }).unsubscribe;
 
     this.util.focusElement('input');
