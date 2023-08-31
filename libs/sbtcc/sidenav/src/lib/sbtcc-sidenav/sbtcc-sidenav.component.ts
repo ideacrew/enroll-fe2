@@ -16,16 +16,17 @@ import { TranslocoDirective } from '@ngneat/transloco';
   imports: [NgIf, RouterLink, TranslocoDirective],
   template: `
     <ng-container *transloco="let t; read: 'progress'">
-      <div>
+      <aside>
         <div class="main">
           <h3>{{ t('header') }}</h3>
-
-          <span>{{ t('start') }}</span>
-          <span>{{ t('tax-exempt') }}</span>
-          <span>{{ t('employees') }}</span>
-          <span>{{ t('wages') }}</span>
-          <span>{{ t('premiums') }}</span>
-          <span>{{ t('results') }}</span>
+          <ul>
+            <li>{{ t('start') }}</li>
+            <li>{{ t('tax-exempt') }}</li>
+            <li>{{ t('employees') }}</li>
+            <li>{{ t('wages') }}</li>
+            <li>{{ t('premiums') }}</li>
+            <li>{{ t('results') }}</li>
+          </ul>
         </div>
 
         <div class="alt" *ngIf="this.location !== 0">
@@ -34,7 +35,7 @@ import { TranslocoDirective } from '@ngneat/transloco';
           </a>
           <a routerLink="/" (click)="resetData()">{{ t('home') }}</a>
         </div>
-      </div>
+      </aside>
     </ng-container>
   `,
   styleUrls: ['./sbtcc-sidenav.component.scss'],
@@ -62,21 +63,21 @@ export class SbtccSidenavComponent implements OnChanges, AfterContentChecked {
   }
 
   private updateLocation(location: number): void {
-    const spans = document.querySelectorAll('.main span');
+    const lis = document.querySelectorAll('.main li');
 
-    if (spans.length) {
-      spans.forEach((span, index) => {
-        // Add Current style to the current span
+    if (lis.length) {
+      lis.forEach((li, index) => {
+        // Add Current style to the current li
         if (index == location) {
-          span.setAttribute('data-current', '');
+          li.setAttribute('data-current', '');
         } else {
-          span.removeAttribute('data-current');
+          li.removeAttribute('data-current');
         }
 
         if (index < location) {
-          span.setAttribute('data-complete', '');
+          li.setAttribute('data-complete', '');
         } else {
-          span.removeAttribute('data-complete');
+          li.removeAttribute('data-complete');
         }
       });
     }

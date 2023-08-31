@@ -7,13 +7,15 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink, NgClass],
   template: `
-    <div class="container">
+    <footer>
       <div class="top">
         <svg
+          role="img"
           width="24"
           height="24"
           viewBox="0 0 24 24"
           fill="none"
+          title="Language Icon"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -23,12 +25,18 @@ import { RouterLink } from '@angular/router';
         </svg>
 
         <a
+          role="button"
+          tabindex="0"
           (click)="switchLanguage('en')"
+          (keyup)="fireKeyupEvent($event, 'en')"
           [ngClass]="{ active: language === 'en' }"
           >English</a
         >
         <a
+          role="button"
+          tabindex="0"
           (click)="switchLanguage('es')"
+          (keyup)="fireKeyupEvent($event, 'es')"
           [ngClass]="{ active: language === 'es' }"
           >Español</a
         >
@@ -44,7 +52,7 @@ import { RouterLink } from '@angular/router';
         >
         <a routerLink="/faq">FAQs</a>
       </div>
-    </div>
+    </footer>
   `,
   styleUrls: ['./sbtcc-footer.component.scss'],
 })
@@ -70,5 +78,11 @@ export class SbtccFooterComponent implements OnInit {
 
   switchLanguage(lang: string): void {
     this.switchLanguageEvent.emit(lang);
+  }
+
+  fireKeyupEvent(event: KeyboardEvent, lang: string): void {
+    if (event.key === 'Enter' || event.code === 'Space') {
+      this.switchLanguage(lang);
+    }
   }
 }

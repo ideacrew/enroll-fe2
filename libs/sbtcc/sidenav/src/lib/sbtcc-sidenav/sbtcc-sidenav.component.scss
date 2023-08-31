@@ -54,14 +54,19 @@ a {
   }
 }
 
-.main span {
+.main ul {
+  padding-left: 0;
+  margin: 0;
+}
+
+.main li {
   display: block;
   text-decoration: none;
   position: relative;
   color: var(--text-primary, #323130);
 }
 
-.main span::after {
+.main li::after {
   content: '';
   display: block;
   position: absolute;
@@ -74,7 +79,7 @@ a {
   color: #8b9ea9;
 }
 
-.main span:not(:last-child)::before {
+.main li:not(:last-child)::before {
   content: '';
   display: block;
   position: absolute;
@@ -86,16 +91,16 @@ a {
   background: #8b9ea9;
 }
 
-.main span[data-complete]:not(:last-child)::before {
+.main li[data-complete]:not(:last-child)::before {
   background: #253843;
 }
 
-.main span[data-complete]::after {
+.main li[data-complete]::after {
   color: #253843;
   background: #253843;
 }
 
-.main span[data-current]::after {
+.main li[data-current]::after {
   color: #253843;
 }
 

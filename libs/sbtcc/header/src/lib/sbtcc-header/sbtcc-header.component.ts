@@ -6,13 +6,13 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   template: `
-    <div>
+    <header>
       <img src="{{ imgSrc }}" alt="Cover Me Logo" width="208" height="41" />
 
       <span class="span"></span>
 
       <h2>{{ title }}</h2>
-    </div>
+    </header>
   `,
   styleUrls: ['./sbtcc-header.component.scss'],
 })

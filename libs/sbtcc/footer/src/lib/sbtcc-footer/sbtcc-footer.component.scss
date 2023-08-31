@@ -14,7 +14,7 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.container {
+footer {
   display: grid;
   gap: 12px;
   padding: 12px 0;
@@ -64,6 +64,7 @@
 a {
   color: #fff;
   cursor: pointer;
+  width: max-content;
 
   &[href^='tel:'] {
     text-decoration: none;
