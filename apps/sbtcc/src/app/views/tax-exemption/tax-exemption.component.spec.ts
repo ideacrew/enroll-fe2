@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TaxExemptionComponent } from './tax-exemption.component';
 import { provideMockStore } from '@ngrx/store/testing';
+import { getTranslocoModule } from '../../translocoTesting.module';
 
 describe('TaxExemptionComponent', () => {
   let component: TaxExemptionComponent;
@@ -8,7 +9,7 @@ describe('TaxExemptionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TaxExemptionComponent],
+      imports: [TaxExemptionComponent, getTranslocoModule()],
       providers: [provideMockStore({})],
     }).compileComponents();
 

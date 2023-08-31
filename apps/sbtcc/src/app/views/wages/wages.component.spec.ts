@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { WagesComponent } from './wages.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
+import { getTranslocoModule } from '../../translocoTesting.module';
 
 describe('WagesComponent', () => {
   let component: WagesComponent;
@@ -9,7 +10,7 @@ describe('WagesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WagesComponent, BrowserAnimationsModule],
+      imports: [WagesComponent, BrowserAnimationsModule, getTranslocoModule()],
       providers: [provideMockStore({})],
     }).compileComponents();
 

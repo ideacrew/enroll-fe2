@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { StartComponent } from './start.component';
 import { provideMockStore } from '@ngrx/store/testing';
+import { getTranslocoModule } from '../../translocoTesting.module';
 
 describe('StartComponent', () => {
   let component: StartComponent;
@@ -8,7 +9,7 @@ describe('StartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StartComponent],
+      imports: [StartComponent, getTranslocoModule()],
       providers: [provideMockStore({})],
     }).compileComponents();
 

@@ -3,6 +3,7 @@ import { EmployeesComponent } from './employees.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
+import { getTranslocoModule } from '../../translocoTesting.module';
 
 describe('EmployeesComponent', () => {
   let component: EmployeesComponent;
@@ -14,6 +15,7 @@ describe('EmployeesComponent', () => {
         EmployeesComponent,
         RouterTestingModule,
         BrowserAnimationsModule,
+        getTranslocoModule(),
       ],
       providers: [provideMockStore({})],
     }).compileComponents();

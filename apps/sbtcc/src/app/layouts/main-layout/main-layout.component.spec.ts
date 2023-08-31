@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MainLayoutComponent } from './main-layout.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { getTranslocoModule } from '../../translocoTesting.module';
 
 describe('MainLayoutComponent', () => {
   let component: MainLayoutComponent;
@@ -9,7 +10,7 @@ describe('MainLayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MainLayoutComponent, RouterTestingModule],
+      imports: [MainLayoutComponent, RouterTestingModule, getTranslocoModule()],
       providers: [provideMockStore({})],
     }).compileComponents();
 
@@ -31,9 +32,9 @@ describe('MainLayoutComponent', () => {
     );
   });
 
-  it(`should have as title 'sbtcc App'`, () => {
+  it(`should have as title 'Small Business Tax Credit Calculator'`, () => {
     const fixture = TestBed.createComponent(MainLayoutComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('sbtcc App');
+    expect(app.title).toEqual('Small Business Tax Credit Calculator');
   });
 });
