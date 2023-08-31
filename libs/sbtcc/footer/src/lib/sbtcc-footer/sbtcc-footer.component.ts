@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'sbtcc-footer',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [RouterLink, NgClass],
   template: `
     <div class="container">
       <div class="top">

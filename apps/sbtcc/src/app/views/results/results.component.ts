@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgIf, AsyncPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,18 +9,19 @@ import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { DataState } from '../../+state/data.reducer';
 import * as DataAction from '../../+state/data.actions';
-import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 @Component({
   selector: 'sbtcc-results',
   standalone: true,
   imports: [
-    CommonModule,
+    NgIf,
+    AsyncPipe,
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
     MatButtonModule,
-    TranslocoModule,
+    TranslocoDirective,
   ],
   template: `
     <ng-container *transloco="let t; read: 'results'">

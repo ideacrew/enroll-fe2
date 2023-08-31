@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { SbtccHeaderComponent } from '@enroll/sbtcc/header';
 import { SbtccFooterComponent } from '@enroll/sbtcc/footer';
@@ -9,12 +8,7 @@ import { TranslocoService } from '@ngneat/transloco';
 @Component({
   selector: 'sbtcc-alt-layout',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    SbtccHeaderComponent,
-    SbtccFooterComponent,
-  ],
+  imports: [RouterOutlet, SbtccHeaderComponent, SbtccFooterComponent],
   template: `
     <div class="wrapper">
       <sbtcc-header [title]="title" [imgSrc]="imgSrc" />

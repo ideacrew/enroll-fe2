@@ -8,12 +8,12 @@ import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { DataState } from '../../+state/data.reducer';
 import * as DataAction from '../../+state/data.actions';
-import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 @Component({
   selector: 'sbtcc-tax-exemption',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatRadioModule, TranslocoModule],
+  imports: [CommonModule, MatButtonModule, MatRadioModule, TranslocoDirective],
 
   styleUrls: ['tax-exemption.component.scss'],
   template: `

@@ -8,7 +8,7 @@ import * as DataAction from '../../+state/data.actions';
 import { Observable, map } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { UtilService } from '../../services/util.service';
-import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 @Component({
   selector: 'sbtcc-premiums',
@@ -17,7 +17,7 @@ import { TranslocoModule } from '@ngneat/transloco';
     MatButtonModule,
     MatInputModule,
     ReactiveFormsModule,
-    TranslocoModule,
+    TranslocoDirective,
   ],
   template: `
     <ng-container *transloco="let t; read: 'premiums'">

@@ -11,7 +11,7 @@ import { SbtccSidenavComponent } from '@enroll/sbtcc/sidenav';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { DataState } from '../../+state/data.reducer';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import * as DataAction from '../../+state/data.actions';
 import { TranslocoModule } from '@ngneat/transloco';
 import { TranslocoService } from '@ngneat/transloco';
@@ -21,7 +21,7 @@ import { Tenant } from '../../../../tenant-config';
   selector: 'sbtcc-main-layout',
   standalone: true,
   imports: [
-    CommonModule,
+    AsyncPipe,
     RouterOutlet,
     TranslocoModule,
     SbtccHeaderComponent,
