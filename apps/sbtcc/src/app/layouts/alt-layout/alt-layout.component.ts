@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { SbtccHeaderComponent } from '@enroll/sbtcc/header';
 import { SbtccFooterComponent } from '@enroll/sbtcc/footer';
+import { Tenant } from '../../../../tenant-config';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'sbtcc-alt-layout',
@@ -15,7 +17,7 @@ import { SbtccFooterComponent } from '@enroll/sbtcc/footer';
   ],
   template: `
     <div class="wrapper">
-      <sbtcc-header />
+      <sbtcc-header [title]="title" [imgSrc]="imgSrc" />
 
       <div class="content">
         <div class="inner-content">
@@ -25,7 +27,16 @@ import { SbtccFooterComponent } from '@enroll/sbtcc/footer';
         </div>
       </div>
 
-      <sbtcc-footer />
+      <sbtcc-footer
+        (switchLanguageEvent)="switchLanguage($event)"
+        [currentLanguage]="currentLanguage"
+        [phone]="phone"
+        [tty]="tty"
+        [email]="email"
+        [company]="company"
+        [copyright]="copyright"
+        [title]="title"
+      />
     </div>
   `,
   styles: [
@@ -59,4 +70,24 @@ import { SbtccFooterComponent } from '@enroll/sbtcc/footer';
     `,
   ],
 })
-export class AltLayoutComponent {}
+export class AltLayoutComponent {
+  title = Tenant.title;
+  currentLanguage = Tenant.defaultLanguage;
+  phone = Tenant.phone;
+  tty = Tenant.tty;
+  email = Tenant.email;
+  company = Tenant.company;
+  copyright = Tenant.copyright;
+  imgSrc = Tenant.imgSrc;
+
+  constructor(private transloco: TranslocoService) {}
+
+  switchLanguage(lang: string): void {
+    this.transloco.setActiveLang(lang);
+    this.currentLanguage = this.getCurrentLanguage();
+  }
+
+  getCurrentLanguage(): string {
+    return this.transloco.getActiveLang();
+  }
+}

@@ -4,12 +4,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { Store } from '@ngrx/store';
 import { DataState } from '../../+state/data.reducer';
 import * as DataAction from '../../+state/data.actions';
-import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 @Component({
   selector: 'sbtcc-start',
   standalone: true,
-  imports: [MatButtonModule, TranslocoModule],
+  imports: [MatButtonModule, TranslocoDirective],
   template: `
     <ng-container *transloco="let t; read: 'start'">
       <p>{{ t('content') }}</p>

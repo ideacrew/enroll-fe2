@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -35,12 +35,12 @@ import { RouterLink } from '@angular/router';
       </div>
 
       <div class="bottom">
-        <span>CoverME.gov - All Rights Reserved.</span>
+        <span>{{ company }} - {{ copyright }}</span>
         <span></span>
-        <a href="tel:888-555-5555">(888) 555-5555 / TTY: 111</a>
+        <a href="tel:{{ phone }}">{{ phone }} / TTY: {{ tty }}</a>
         <a
-          href="mailto:info@coverme.gov?subject=Contact from Tax Credit Calculator Website"
-          >info@coverme.gov</a
+          href="mailto:{{ email }}?subject=Contact from {{ appName }} Website"
+          >{{ email }}</a
         >
         <a routerLink="/faq">FAQs</a>
       </div>
@@ -48,14 +48,25 @@ import { RouterLink } from '@angular/router';
   `,
   styleUrls: ['./sbtcc-footer.component.scss'],
 })
-export class SbtccFooterComponent {
+export class SbtccFooterComponent implements OnInit {
   language = 'en';
+  appName = '';
 
+  @Input() phone = '(800) 555-5555';
+  @Input() tty = '111';
+  @Input() email = 'info@company.com';
+  @Input() company = 'Company Name';
+  @Input() copyright = 'All Rights Reserved.';
+  @Input() title = 'Name of App';
   @Input()
   set currentLanguage(value: string) {
     this.language = value ?? 'en';
   }
   @Output() switchLanguageEvent = new EventEmitter<string>();
+
+  ngOnInit(): void {
+    this.appName = `${this.company} ${this.title}`;
+  }
 
   switchLanguage(lang: string): void {
     this.switchLanguageEvent.emit(lang);

@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Tenant } from '../../tenant-config';
 
 @Component({
   selector: 'sbtcc-root',
@@ -9,5 +10,5 @@ import { RouterOutlet } from '@angular/router';
   template: ` <router-outlet /> `,
 })
 export class AppComponent {
-  title = 'Small Business Tax Credit Calculator';
+  title = Tenant.title;
 }

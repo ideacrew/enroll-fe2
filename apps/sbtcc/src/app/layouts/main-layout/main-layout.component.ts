@@ -15,6 +15,8 @@ import { CommonModule } from '@angular/common';
 import * as DataAction from '../../+state/data.actions';
 import { TranslocoModule } from '@ngneat/transloco';
 import { TranslocoService } from '@ngneat/transloco';
+import { Tenant } from '../../../../tenant-config';
+
 @Component({
   selector: 'sbtcc-main-layout',
   standalone: true,
@@ -30,7 +32,7 @@ import { TranslocoService } from '@ngneat/transloco';
   styleUrls: ['./main-layout.component.scss'],
   template: `
     <div class="wrapper">
-      <sbtcc-header />
+      <sbtcc-header [title]="title" [imgSrc]="imgSrc" />
 
       <div class="content">
         <div class="inner-content">
@@ -50,13 +52,25 @@ import { TranslocoService } from '@ngneat/transloco';
       <sbtcc-footer
         (switchLanguageEvent)="switchLanguage($event)"
         [currentLanguage]="currentLanguage"
+        [phone]="phone"
+        [tty]="tty"
+        [email]="email"
+        [company]="company"
+        [copyright]="copyright"
+        [title]="title"
       />
     </div>
   `,
 })
 export class MainLayoutComponent implements OnInit, AfterViewInit {
-  title = 'sbtcc App';
-  currentLanguage = 'en';
+  title = Tenant.title;
+  currentLanguage = Tenant.defaultLanguage;
+  phone = Tenant.phone;
+  tty = Tenant.tty;
+  email = Tenant.email;
+  company = Tenant.company;
+  copyright = Tenant.copyright;
+  imgSrc = Tenant.imgSrc;
 
   dataState$: Observable<DataState>;
   currentLocation = new Observable<number>();
