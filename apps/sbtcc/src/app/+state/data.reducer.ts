@@ -93,12 +93,18 @@ const reducer = createReducer(
 
   on(DataActions.results, (state) => ({
     ...state,
-    results:
-      (state.taxExempt ? 0 : 1) *
-      ((state.wages || 0) * 0.35 - (state.premiums || 0) * 0.35) *
-      (state.employeeCount || 0),
+    results: calcResults(state),
   })),
 );
+
+function calcResults(state: DataState): number {
+  const isExempt = state.taxExempt ? 1.35 : 1.75;
+  const wages = (state.wages || 0) * 0.35;
+  const premiums = (state.premiums || 0) * 0.35;
+  const employeeCount = state.employeeCount || 0;
+  const results = isExempt * (wages - premiums) * employeeCount;
+  return results;
+}
 
 export function dataReducer(state: DataState | undefined, action: Action) {
   return reducer(state, action);
