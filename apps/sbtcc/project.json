@@ -14,7 +14,7 @@
         "index": "apps/sbtcc/src/index.html",
         "main": "apps/sbtcc/src/main.ts",
         "polyfills": ["zone.js"],
-        "allowedCommonJsDependencies": ["flat"],
+        "allowedCommonJsDependencies": ["flat", "inputmask"],
         "tsConfig": "apps/sbtcc/tsconfig.app.json",
         "assets": [
           "apps/sbtcc/src/favicon.ico",
