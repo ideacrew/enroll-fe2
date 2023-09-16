@@ -1,6 +1,6 @@
 import { DataState } from './data.reducer';
 
-export interface MeValues {
+export interface ValEntity {
   wageThreshold: number;
   maxWageThreshold: number;
   avgShopPremium: number;
@@ -8,7 +8,7 @@ export interface MeValues {
   taxExemptPercent: number;
 }
 
-export const values: MeValues = {
+export const values: ValEntity = {
   wageThreshold: 28700,
   maxWageThreshold: 58000,
   avgShopPremium: 7655,
@@ -16,9 +16,12 @@ export const values: MeValues = {
   taxExemptPercent: 0.35,
 };
 
-export function calcResults(state: DataState, values: MeValues): number {
+export function calcResults(state: DataState, values: ValEntity): number {
   const avgWages = roundDown((state.wages || 0) / (state.employeeCount || 0));
-  const premiums = (state.employeeCount || 0) * values.avgShopPremium;
+  const premiums = calcPremiums(
+    state.employeeCount || 0,
+    values.avgShopPremium,
+  );
   const appPremium = findAppPremium(state.premiums || 0, premiums);
   const adjPremium = findAdjPremium(
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -53,11 +56,21 @@ export function calcResults(state: DataState, values: MeValues): number {
 
   return result;
 }
-function roundDown(num: number) {
+export function roundDown(num: number) {
   return Math.floor(num / 1000) * 1000 || 0;
 }
 
-function findAppPremium(avgPremium: number, employerPremium: number): number {
+export function calcPremiums(
+  employeeCount: number,
+  avgPremium: number,
+): number {
+  return employeeCount * avgPremium;
+}
+
+export function findAppPremium(
+  avgPremium: number,
+  employerPremium: number,
+): number {
   return avgPremium < employerPremium ? avgPremium : employerPremium;
 }
 
