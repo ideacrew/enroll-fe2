@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { DataState } from './data.reducer';
 
 export interface ValEntity {
@@ -18,19 +19,23 @@ export const values: ValEntity = {
 
 export function calcResults(state: DataState, values: ValEntity): number {
   const avgWages = roundDown((state.wages || 0) / (state.employeeCount || 0));
+
   const premiums = calcPremiums(
     state.employeeCount || 0,
     values.avgShopPremium,
   );
+
   const appPremium = findAppPremium(state.premiums || 0, premiums);
+
   const adjPremium = findAdjPremium(
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     state.taxExempt!,
     appPremium,
     values.taxExemptPercent,
     values.nonExemptPercent,
   );
+
   const wageThresholdApplies: boolean = avgWages > values.wageThreshold;
+
   const wageThresholdAdjustment = findWageThresholdAdjustment(
     wageThresholdApplies,
     appPremium,
@@ -38,23 +43,17 @@ export function calcResults(state: DataState, values: ValEntity): number {
     values.wageThreshold,
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const fteThresholdApplies: boolean = state.employeeCount! > 10;
+
   const fteThresholdAdjustment = findFteThresholdAdjustment(
     fteThresholdApplies,
     appPremium,
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     state.employeeCount!,
   );
 
   const totalAdjustment = wageThresholdAdjustment + fteThresholdAdjustment;
 
-  const result =
-    adjPremium - totalAdjustment > 0 ? adjPremium - totalAdjustment : 0;
-
-  console.log(wageThresholdApplies);
-
-  return result;
+  return totalResults(adjPremium, totalAdjustment);
 }
 export function roundDown(num: number) {
   return Math.floor(num / 1000) * 1000 || 0;
@@ -83,7 +82,7 @@ export function findAdjPremium(
   return exempt ? appPremium * ePercent : appPremium * nonPercent;
 }
 
-function findWageThresholdAdjustment(
+export function findWageThresholdAdjustment(
   wageThresholdApplies: boolean,
   appPremium: number,
   avgWages: number,
@@ -96,7 +95,7 @@ function findWageThresholdAdjustment(
   return 0;
 }
 
-function findFteThresholdAdjustment(
+export function findFteThresholdAdjustment(
   fteThresholdApplies: boolean,
   appPremium: number,
   employeeCount: number,
@@ -106,4 +105,10 @@ function findFteThresholdAdjustment(
     return Number(value.toFixed(2));
   }
   return 0;
+}
+
+export function totalResults(x: number, y: number): number {
+  const value = x - y > 0 ? x - y : 0;
+  // Return number to two decimal places
+  return Number(value.toFixed(2));
 }
