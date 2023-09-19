@@ -74,7 +74,7 @@ export function findAppPremium(
   return avgPremium < employerPremium ? avgPremium : employerPremium;
 }
 
-function findAdjPremium(
+export function findAdjPremium(
   exempt: boolean,
   appPremium: number,
   ePercent: number,

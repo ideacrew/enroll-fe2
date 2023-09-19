@@ -1,4 +1,10 @@
-import { roundDown, calcPremiums, findAppPremium, values } from './calcResults';
+import {
+  roundDown,
+  calcPremiums,
+  findAppPremium,
+  findAdjPremium,
+  values,
+} from './calcResults';
 import { DataState } from './data.reducer';
 
 describe('calcResult functions', () => {
@@ -47,6 +53,32 @@ describe('calcResult functions', () => {
     'findAppPremium($input, $calcPremium)',
     ({ input, calcPremium, expected }) => {
       expect(findAppPremium(input, calcPremium)).toBe(expected);
+    },
+  );
+
+  // Test findAdjPremium()
+  test.each([
+    { exempt: true, appPremium: 10000, expected: 3500 },
+    // { exempt: true, appPremium: 10000, expected: 3500 },
+    // { exempt: true, appPremium: 10000, expected: 3500 },
+    { exempt: false, appPremium: 10000, expected: 5000 },
+    // { exempt: false, appPremium: 10000, expected: 5000 },
+    // { exempt: false, appPremium: 10000, expected: 5000 },
+    { exempt: false, appPremium: 2500, expected: 1250 },
+    // { exempt: false, appPremium: 2500, expected: 1250 },
+    { exempt: false, appPremium: 50000, expected: 25000 },
+    // { exempt: false, appPremium: 2500, expected: 1250 },
+  ])(
+    'findAdjPremium($input, $calcPremium)',
+    ({ exempt, appPremium, expected }) => {
+      expect(
+        findAdjPremium(
+          exempt,
+          appPremium,
+          values.taxExemptPercent,
+          values.nonExemptPercent,
+        ),
+      ).toBe(expected);
     },
   );
 });
