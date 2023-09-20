@@ -43,6 +43,7 @@
     "result3": "Total estimated employee wages for the applicable tax year?",
     "result4": "Total estimated amount paid toward premiums during the applicable year?",
     "total": "Estimated annual tax-credit",
+    "ineligible": "You're not eligible for the tax credit based on the information you entered. You should talk with a licensed tax specialist to help you determine how the tax credit applies to your business.",
     "next": "Start Over",
     "previous": "{{employees.previous}}"
   },
