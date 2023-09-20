@@ -33,9 +33,8 @@ import { TranslocoDirective } from '@ngneat/transloco';
             type="number"
             inputmode="numeric"
             min="0"
-            oninput="this.value =
-              !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
             [formControl]="countField"
+            (input)="util.validateInput($event)"
             (keyup.enter)="nextStep()"
           />
         </mat-form-field>
@@ -64,7 +63,7 @@ export class EmployeesComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private util: UtilService,
+    public util: UtilService,
     private store: Store<{ dataState: DataState }>,
   ) {
     this.dataState$ = store.select('dataState');
