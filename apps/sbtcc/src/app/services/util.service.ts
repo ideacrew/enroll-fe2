@@ -33,4 +33,12 @@ export class UtilService {
   formatCommaNumber(value: string) {
     return parseInt(value?.toString().replace(/,/g, '') || '0');
   }
+
+  validateInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    input.value =
+      !!input.value && Math.abs(Number(input.value)) >= 0
+        ? String(Math.abs(Number(input.value)))
+        : '';
+  }
 }

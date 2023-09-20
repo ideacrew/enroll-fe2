@@ -33,6 +33,8 @@ import { InputMaskModule } from '@ngneat/input-mask';
           <span matPrefix>$</span>
           <input
             matInput
+            min="0"
+            oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
             [inputMask]="util.currencyInputMask"
             [formControl]="premiumsField"
             (keyup.enter)="nextStep()"
@@ -46,7 +48,11 @@ import { InputMaskModule } from '@ngneat/input-mask';
       <button
         mat-raised-button
         color="primary"
-        [disabled]="premiumsField.value === null || premiumsField.value === ''"
+        [disabled]="
+          premiumsField.value === null ||
+          premiumsField.value === '' ||
+          premiumsField.value <= 0
+        "
         (click)="nextStep()"
       >
         {{ t('next') }}
