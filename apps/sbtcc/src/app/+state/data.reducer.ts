@@ -3,6 +3,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 
 import * as DataActions from './data.actions';
 import { DataEntity } from './data.models';
+import { calcResults, values } from './calcResults';
 
 export const DATA_FEATURE_KEY = 'data';
 
@@ -93,18 +94,9 @@ const reducer = createReducer(
 
   on(DataActions.results, (state) => ({
     ...state,
-    results: calcResults(state),
+    results: calcResults(state, values),
   })),
 );
-
-function calcResults(state: DataState): number {
-  const isExempt = state.taxExempt ? 1.35 : 1.75;
-  const wages = (state.wages || 0) * 0.35;
-  const premiums = (state.premiums || 0) * 0.35;
-  const employeeCount = state.employeeCount || 0;
-  const results = isExempt * (wages - premiums) * employeeCount;
-  return results;
-}
 
 export function dataReducer(state: DataState | undefined, action: Action) {
   return reducer(state, action);

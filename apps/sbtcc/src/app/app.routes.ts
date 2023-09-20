@@ -3,8 +3,8 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { StartComponent } from './views/start/start.component';
 import { TaxExemptionComponent } from './views/tax-exemption/tax-exemption.component';
 import { EmployeesComponent } from './views/employees/employees.component';
-import { AltLayoutComponent } from './layouts/alt-layout/alt-layout.component';
-import { FaqComponent } from './views/faq/faq.component';
+// import { AltLayoutComponent } from './layouts/alt-layout/alt-layout.component';
+// import { FaqComponent } from './views/faq/faq.component';
 import { WagesComponent } from './views/wages/wages.component';
 import { PremiumsComponent } from './views/premiums/premiums.component';
 import { ResultsComponent } from './views/results/results.component';
@@ -40,16 +40,16 @@ export const appRoutes: Route[] = [
       },
     ],
   },
-  {
-    path: 'faq',
-    component: AltLayoutComponent,
-    children: [
-      {
-        path: '',
-        component: FaqComponent,
-      },
-    ],
-  },
+  // {
+  //   path: 'faq',
+  //   component: AltLayoutComponent,
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: FaqComponent,
+  //     },
+  //   ],
+  // },
   {
     path: '**',
     redirectTo: '',
