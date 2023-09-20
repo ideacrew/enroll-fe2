@@ -59,12 +59,13 @@ import { TranslocoDirective } from '@ngneat/transloco';
       </ol>
 
       <h3>
-        {{ t('total') }}: $
-        {{
-          (this.results$ | async)?.toLocaleString() !== '0'
-            ? (this.results$ | async)?.toLocaleString()
-            : 'Ineligible'
-        }}
+        <ng-container *ngIf="(this.results$ | async)?.toLocaleString() !== '0'">
+          {{ t('total') }}: $ {{ (this.results$ | async)?.toLocaleString() }}
+        </ng-container>
+
+        <ng-container *ngIf="(this.results$ | async)?.toLocaleString() === '0'">
+          {{ t('ineligible') }}
+        </ng-container>
       </h3>
 
       <button mat-raised-button color="basic" (click)="previousStep()">
