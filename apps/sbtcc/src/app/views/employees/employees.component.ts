@@ -32,6 +32,9 @@ import { TranslocoDirective } from '@ngneat/transloco';
             matInput
             type="number"
             inputmode="numeric"
+            min="0"
+            oninput="this.value =
+              !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
             [formControl]="countField"
             (keyup.enter)="nextStep()"
           />
