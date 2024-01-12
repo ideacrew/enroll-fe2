@@ -43,3 +43,5 @@ migrations.json
 
 # Local Netlify folder
 .netlify
+
+.nx/cache
