@@ -19,7 +19,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
     provideStore({ dataState: dataReducer }),
-    provideStoreDevtools({ logOnly: !isDevMode() }),
+    provideStoreDevtools({ logOnly: !isDevMode(), connectInZone: true }),
     // provideState(fromData.DATA_FEATURE_KEY, fromData.dataReducer),
     // provideEffects(DataEffects),
     provideAnimations(),
